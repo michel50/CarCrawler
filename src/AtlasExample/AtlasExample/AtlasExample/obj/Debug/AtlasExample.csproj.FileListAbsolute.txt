@@ -1,0 +1,16 @@
+C:\Installs\AtlasExample\AtlasExample\AtlasExample\bin\Debug\AtlasExample.exe.config
+C:\Installs\AtlasExample\AtlasExample\AtlasExample\bin\Debug\AtlasExample.exe
+C:\Installs\AtlasExample\AtlasExample\AtlasExample\bin\Debug\AtlasExample.pdb
+C:\Installs\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Atlas.dll
+C:\Installs\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Autofac.Configuration.dll
+C:\Installs\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Autofac.dll
+C:\Installs\AtlasExample\AtlasExample\AtlasExample\bin\Debug\C5.dll
+C:\Installs\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Common.Logging.dll
+C:\Installs\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Quartz.dll
+C:\Installs\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Atlas.xml
+C:\Installs\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Autofac.xml
+C:\Installs\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Quartz.pdb
+C:\Installs\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Quartz.xml
+C:\Installs\AtlasExample\AtlasExample\AtlasExample\obj\Debug\AtlasExample.csprojResolveAssemblyReference.cache
+C:\Installs\AtlasExample\AtlasExample\AtlasExample\obj\Debug\AtlasExample.exe
+C:\Installs\AtlasExample\AtlasExample\AtlasExample\obj\Debug\AtlasExample.pdb

@@ -1,0 +1,9 @@
+C:\dev\RssTestReader\DataAccess\bin\Release\DataAccess.dll
+C:\dev\RssTestReader\DataAccess\bin\Release\DataAccess.pdb
+C:\dev\RssTestReader\DataAccess\obj\Release\DataAccess.dll
+C:\dev\RssTestReader\DataAccess\obj\Release\DataAccess.pdb
+D:\dev\RssTestReader\DataAccess\bin\Release\DataAccess.dll
+D:\dev\RssTestReader\DataAccess\bin\Release\DataAccess.pdb
+D:\dev\RssTestReader\DataAccess\obj\Release\DataAccess.csprojResolveAssemblyReference.cache
+D:\dev\RssTestReader\DataAccess\obj\Release\DataAccess.dll
+D:\dev\RssTestReader\DataAccess\obj\Release\DataAccess.pdb

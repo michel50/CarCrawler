@@ -1,0 +1,12 @@
+C:\dev\RssTestReader\DataAccess\bin\Debug\DataAccess.dll
+C:\dev\RssTestReader\DataAccess\bin\Debug\DataAccess.pdb
+C:\dev\RssTestReader\DataAccess\obj\Debug\DataAccess.dll
+C:\dev\RssTestReader\DataAccess\obj\Debug\DataAccess.pdb
+D:\dev\RssTestReader\DataAccess\bin\Debug\DataAccess.dll
+D:\dev\RssTestReader\DataAccess\bin\Debug\DataAccess.pdb
+D:\dev\RssTestReader\DataAccess\bin\Debug\Dapper.dll
+D:\dev\RssTestReader\DataAccess\bin\Debug\Dapper.pdb
+D:\dev\RssTestReader\DataAccess\bin\Debug\Dapper.xml
+D:\dev\RssTestReader\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+D:\dev\RssTestReader\DataAccess\obj\Debug\DataAccess.dll
+D:\dev\RssTestReader\DataAccess\obj\Debug\DataAccess.pdb
