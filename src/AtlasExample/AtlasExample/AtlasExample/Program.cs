@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using Atlas;
+﻿using Atlas;
 using Autofac;
 using System;
 using NLog;

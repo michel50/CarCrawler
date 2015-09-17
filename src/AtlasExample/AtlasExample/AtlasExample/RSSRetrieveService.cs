@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using Atlas;
+﻿using Atlas;
 using Quartz;
 
 namespace RSSRetrieveService

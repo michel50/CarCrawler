@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Xml;
 using Quartz;
 using Argotic.Extensions.Core;
 using Argotic.Syndication;

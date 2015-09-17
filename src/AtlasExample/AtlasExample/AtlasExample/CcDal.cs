@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Web.UI;
-using System.Net.Mail;
 using DataAccess;
 using DataAccess.Entities;
 using NLog;
-using System.Linq;
+using RSSRetrieveService.Properties;
 
 namespace RSSRetrieveService
 {
@@ -19,35 +21,33 @@ namespace RSSRetrieveService
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private bool _disposed;
-        public readonly DataAccess.Data dataAccess;
-        private readonly List<DataAccess.Entities.CarDetail> emptyList;
-        private readonly List<Feed> feeds;
-        private readonly List<Predicate> predicates;
+        public readonly Data DataAccess;
+        private readonly List<CarDetail> _emptyList;
+        private readonly List<Feed> _feeds;
+        private readonly List<Predicate> _predicates;
         public CcDal()
         {
-            dataAccess = new Data();
+            DataAccess = new Data();
          //   dataAccess.CleanTables();
-            emptyList = dataAccess.GetEmptyDetail();
-            feeds = dataAccess.GetActiveFeeds();
-            predicates = dataAccess.GetPredicates();
+            _emptyList = DataAccess.GetEmptyDetail();
+            _feeds = DataAccess.GetActiveFeeds();
+            _predicates = DataAccess.GetPredicates();
         }
         public void FillCarDetails()
         {
             try
             {
-                dataAccess.CleanDB();
+                DataAccess.CleanDB();
                 Logger.Debug("Filling Details = {0}", DateTime.Now.ToString("MMM ddd d HH:mm yyyy"));
                 FillMillage();
                 FillYears();
                 FillMake();
                 FillModel();
                 FillPrice();
-                foreach (var car in emptyList)
+                foreach (var car in _emptyList)
                 {
-                    dataAccess.UpdateCarDetail(car);
-                    var retval = dataAccess.CheckForDups(car.Id);
-           
-
+                    DataAccess.UpdateCarDetail(car);
+                    DataAccess.CheckForDups(car.Id);
                 }
                 SendOutEmails();
                 SendMail();
@@ -64,7 +64,7 @@ namespace RSSRetrieveService
         private void FillMillage()
         {
 
-            var regExMiles = dataAccess.GetRegEx("Miles");
+            var regExMiles = DataAccess.GetRegEx("Miles");
 
             foreach (var regEx in regExMiles)
             {
@@ -82,7 +82,7 @@ namespace RSSRetrieveService
                 string intString;
                 int miles;
                 int tempMiles;
-                foreach (var emptyColumn in emptyList)
+                foreach (var emptyColumn in _emptyList)
                 {
 
                     m = regex.Match(emptyColumn.Title);
@@ -102,7 +102,6 @@ namespace RSSRetrieveService
                             {
                                 miles = tempMiles;
                                 emptyColumn.Miles = miles;
-                                continue;
                             }
                         }
                     }
@@ -110,7 +109,7 @@ namespace RSSRetrieveService
                 }
 
 
-                foreach (var emptyColumn in emptyList.Where(x => x.Miles == (int?)null))
+                foreach (var emptyColumn in _emptyList.Where(x => x.Miles == (int?)null))
                 {
                     m = regex.Match(emptyColumn.Description);
                     if (m.Success)
@@ -128,7 +127,6 @@ namespace RSSRetrieveService
                             {
                                 miles = tempMiles;
                                 emptyColumn.Miles = miles;
-                                continue;
                             }
                         }
                     }
@@ -143,9 +141,9 @@ namespace RSSRetrieveService
             try
             {
 
-                foreach (var car in emptyList.Where(x => x.Year != (short?)null))
+                foreach (var car in _emptyList.Where(x => x.Year != (short?)null))
                 {
-                    var makes = dataAccess.GetDistinctMakes(car.Year.Value);
+                    var makes = DataAccess.GetDistinctMakes(car.Year.Value);
                     if (makes.Count > 0)
                     {
                         foreach (var make in makes)
@@ -161,9 +159,9 @@ namespace RSSRetrieveService
                     }
                 }
 
-                foreach (var car in emptyList.Where(x => x.Year != (short?)null))
+                foreach (var car in _emptyList.Where(x => x.Year != (short?)null))
                 {
-                    var makes = dataAccess.GetDistinctMakes(car.Year.Value);
+                    var makes = DataAccess.GetDistinctMakes(car.Year.Value);
                     if (makes.Count > 0)
                     {
                         foreach (var make in makes)
@@ -190,9 +188,9 @@ namespace RSSRetrieveService
             try
             {
 
-                foreach (var car in emptyList.Where(x => x.Year != (short?)null && x.Make != null))
+                foreach (var car in _emptyList.Where(x => x.Year != (short?)null && x.Make != null))
                 {
-                    var models = dataAccess.GetDistinctModel(car.Year.Value, car.Make);
+                    var models = DataAccess.GetDistinctModel(car.Year.Value, car.Make);
                     if (models.Count > 0)
                     {
 
@@ -226,9 +224,9 @@ namespace RSSRetrieveService
                     }
                 }
 
-                foreach (var car in emptyList.Where(x => x.Year != (short?)null && x.Make != null))
+                foreach (var car in _emptyList.Where(x => x.Year != (short?)null && x.Make != null))
                 {
-                    var models = dataAccess.GetDistinctModel(car.Year.Value, car.Make);
+                    var models = DataAccess.GetDistinctModel(car.Year.Value, car.Make);
                     if (models.Count > 0)
                     {
 
@@ -275,7 +273,7 @@ namespace RSSRetrieveService
             {
 
 
-                foreach (var emptyColumn in emptyList)
+                foreach (var emptyColumn in _emptyList)
                 {
                     var tempstr = emptyColumn.Title.Substring(0, 4);
                     short tempint;
@@ -284,14 +282,13 @@ namespace RSSRetrieveService
                         if (tempint > 1930 && tempint <= DateTime.Now.Year)
                         {
                             emptyColumn.Year = tempint;
-                            continue;
                         }
 
                     }
                 }
 
 
-                foreach (var emptyColumn in emptyList)
+                foreach (var emptyColumn in _emptyList)
                 {
                     var tempstr = emptyColumn.Title.Substring(0, 2);
                     short tempint;
@@ -306,13 +303,12 @@ namespace RSSRetrieveService
                         if (tempint <= DateTime.Now.Year)
                         {
                             emptyColumn.Year = tempint;
-                            continue;
                         }
 
                     }
                 }
 
-                var regExMiles = dataAccess.GetRegEx("Year");
+                var regExMiles = DataAccess.GetRegEx("Year");
 
                 foreach (var regex in regExMiles.Select(regEx => new Regex(
                     regEx.RegExExpression,
@@ -325,7 +321,7 @@ namespace RSSRetrieveService
                     Match m;
 
                     short tempInt;
-                    foreach (var emptyColumn in emptyList)
+                    foreach (var emptyColumn in _emptyList)
                     {
 
 
@@ -342,7 +338,7 @@ namespace RSSRetrieveService
                     }
 
 
-                    foreach (var emptyColumn in emptyList)
+                    foreach (var emptyColumn in _emptyList)
                     {
 
                         m = regex.Match(emptyColumn.Description);
@@ -368,7 +364,7 @@ namespace RSSRetrieveService
 
             try
             {
-                var regExMiles = dataAccess.GetRegEx("Price");
+                var regExMiles = DataAccess.GetRegEx("Price");
 
                 foreach (var regEx in regExMiles)
                 {
@@ -383,7 +379,7 @@ namespace RSSRetrieveService
                     Match m;
 
                     decimal tempInt;
-                    foreach (var emptyColumn in emptyList)
+                    foreach (var emptyColumn in _emptyList)
                     {
 
 
@@ -394,15 +390,13 @@ namespace RSSRetrieveService
                             if (decimal.TryParse(m.Value.Replace("$", "").Replace(",", ""), out tempInt))
                             {
                                 emptyColumn.Price = tempInt;
-                                continue;
-
                             }
                         }
 
                     }
 
 
-                    foreach (var emptyColumn in emptyList)
+                    foreach (var emptyColumn in _emptyList)
                     {
 
                         m = regex.Match(emptyColumn.Description);
@@ -411,8 +405,6 @@ namespace RSSRetrieveService
                             if (decimal.TryParse(m.Value.Replace("$", "").Replace(",", ""), out tempInt))
                             {
                                 emptyColumn.Price = tempInt;
-                                continue;
-
                             }
 
                         }
@@ -491,13 +483,13 @@ namespace RSSRetrieveService
 
                 writer.RenderBeginTag(HtmlTextWriterTag.Td);
                 // To do
-                writer.Write(feeds.Where(x => x.Id == val.FeedId).FirstOrDefault().FeedCity);
+                writer.Write(_feeds.Where(x => x.Id == val.FeedId).FirstOrDefault().FeedCity);
 
                 writer.RenderEndTag();
 
                 writer.RenderBeginTag(HtmlTextWriterTag.Td);
                 // To Do
-                writer.Write(feeds.Where(x => x.Id == val.FeedId).FirstOrDefault().FeedState);
+                writer.Write(_feeds.Where(x => x.Id == val.FeedId).FirstOrDefault().FeedState);
                 writer.RenderEndTag();
 
                 writer.RenderEndTag();
@@ -553,13 +545,13 @@ namespace RSSRetrieveService
                     EmailSubject = subject
                 };
             //  Logger.Debug(html);
-            int id = dataAccess.InsertEmail(email);
+            int id = DataAccess.InsertEmail(email);
             foreach (var v in values)
             {
      
                 var batch = new EmailBatch { EmailId = id, CarId = v.Id };
-                dataAccess.InsertEmailBatch(batch);
-                dataAccess.UpdateMailSent(v.Id);
+                DataAccess.InsertEmailBatch(batch);
+                DataAccess.UpdateMailSent(v.Id);
                 v.EmailSent = true;
             }
 
@@ -568,13 +560,13 @@ namespace RSSRetrieveService
 
         private void SendOutEmails()
         {
-            foreach (var q in dataAccess.GetEmailQueries().FindAll(x => x.Email == true))
+            foreach (var q in DataAccess.GetEmailQueries().FindAll(x => x.Email == true))
             {
                 
-                var emails = dataAccess.GetEmailsToSend(GenSqlStatementForEmails(q.Id));
-                Logger.Debug("Total from query {0} = {1}.", q.Subject, emails.Count.ToString());
+                var emails = DataAccess.GetEmailsToSend(GenSqlStatementForEmails(q.Id));
+                Logger.Debug("Total from query {0} = {1}.", q.Subject, emails.Count);
                 var emailss = emails.Where(e => e.EmailSent == false);
-                Logger.Debug("Total after Lambda  {0} = {1}.", q.Subject, emailss.Count().ToString());
+                Logger.Debug("Total after Lambda  {0} = {1}.", q.Subject, emailss.Count());
                 var batches = emailss.Partition(10);
                 foreach (var batch in batches)
                 {
@@ -586,7 +578,7 @@ namespace RSSRetrieveService
 
         private string GenSqlStatementForEmails(Int16 id)
         {
-            var query = dataAccess.GetQueryById(id);
+            var query = DataAccess.GetQueryById(id);
             var keywords = query.TitleAndDescripton.Split(',');
             for (var i = 0; i < keywords.Length; i++)
             {
@@ -701,7 +693,7 @@ namespace RSSRetrieveService
 
             }
 
-            var sqlStr = "select * from car where " + contains + " and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < " + Properties.Settings.Default.maxemaildate + ")"; //(FeedId in (select Id From Feed where FeedActive = 1))
+            var sqlStr = "select * from car where " + contains + " and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < " + Settings.Default.maxemaildate + ")"; //(FeedId in (select Id From Feed where FeedActive = 1))
             Logger.Debug(sqlStr);
             return sqlStr;
         }
@@ -709,7 +701,7 @@ namespace RSSRetrieveService
         private string BuildStringPredicate(string contains, byte predicate, string value, string name, bool allowNulls)
         {
 
-            var tmpPredicate = predicates.FirstOrDefault(e => e.Id == predicate);
+            var tmpPredicate = _predicates.FirstOrDefault(e => e.Id == predicate);
             var tempvalue = value.Split(',');
             var tempcontains = "(";
             if (tempvalue.Length == 2)
@@ -740,7 +732,7 @@ namespace RSSRetrieveService
         private string BuildNumberPredicate(string contains, byte predicate, string value, string name, bool allowNulls)
         {
 
-            var tmpPredicate = predicates.FirstOrDefault(e => e.Id == predicate);
+            var tmpPredicate = _predicates.FirstOrDefault(e => e.Id == predicate);
             var tempvalue = value.Split(',');
             var tempcontains = "(";
             if (tempvalue.Length == 2)
@@ -771,12 +763,12 @@ namespace RSSRetrieveService
         private void SendMail()
         {
             Logger.Info("Sending Email {0}",DateTime.Now);
-            var batches = dataAccess.GetBatchemailsToSend();
+            var batches = DataAccess.GetBatchemailsToSend();
             foreach (var batch in batches)
             {
-                if(batch.EmailSent.Value == true)
+                if(batch.EmailSent.Value)
                     continue;
-                var message = new MailMessage(Properties.Settings.Default.mailfrom, Properties.Settings.Default.mailto);
+                var message = new MailMessage(Settings.Default.mailfrom, Settings.Default.mailto);
                 message.IsBodyHtml = true;
                 if (batch.EmailGeneratedDate != null)
                     message.Subject =
@@ -784,27 +776,27 @@ namespace RSSRetrieveService
                                       batch.EmailGeneratedDate.Value.ToString("MM/dd/yyyy hh:mm:ss tt",
                                                                               CultureInfo.InvariantCulture));
                 message.Body = batch.EmailMessage;
-                var client = new SmtpClient(Properties.Settings.Default.smptserver);
-                client.Port = Properties.Settings.Default.smtpport;
+                var client = new SmtpClient(Settings.Default.smptserver);
+                client.Port = Settings.Default.smtpport;
 
-                client.Credentials = new NetworkCredential(Properties.Settings.Default.smtpuser,
-                                                           Properties.Settings.Default.smptpassword);
-                client.EnableSsl = Properties.Settings.Default.smtpssl;
+                client.Credentials = new NetworkCredential(Settings.Default.smtpuser,
+                                                           Settings.Default.smptpassword);
+                client.EnableSsl = Settings.Default.smtpssl;
 
                 //var client = new SmtpClient("localhost");
                 //client.Port = 25;
 
                 // Credentials are necessary if the server requires the client 
                 // to authenticate before it will send e-mail on the client's behalf.
-                if (!Properties.Settings.Default.sendemail)
+                if (!Settings.Default.sendemail)
                 {
                     return;
                 }
                 client.Send(message);
-                dataAccess.BatchEmailSent(batch.Id);
+                DataAccess.BatchEmailSent(batch.Id);
                 var random = new Random();
                 int randomNumber = random.Next(1000, 5000);
-                System.Threading.Thread.Sleep(randomNumber);
+                Thread.Sleep(randomNumber);
             }
         }
 
@@ -863,8 +855,8 @@ namespace RSSRetrieveService
                 // and unmanaged resources. 
                 if (disposing)
                 {
-                    dataAccess.Dispose();
-                    emptyList.Clear();
+                    DataAccess.Dispose();
+                    _emptyList.Clear();
 
 
                 }
