@@ -121,7 +121,7 @@ namespace RSSRetrieveService
                         tempString = tempString.ToLower().Replace("xxx", "000");
 
                         intString = RemoveNonNumeric(tempString);
-                        if (Int32.TryParse(intString, out tempMiles))
+                        if (int.TryParse(intString, out tempMiles))
                         {
 
                             if (tempMiles > 3000)
@@ -201,24 +201,19 @@ namespace RSSRetrieveService
 
                             var carmodels = model.Split(' ');
                             var carfound = false;
-                            string stringmodel = "";
-                            for (int i = 0; i < carmodels.Length; i++)
+                            var stringmodel = "";
+                            foreach (string t in carmodels.Where(t => car.Title.ToUpper().Contains(t.ToUpper())))
                             {
-                                if (car.Title.ToUpper().Contains(carmodels[i].ToUpper()))
+                                if (carfound)
                                 {
-                                    if (carfound)
-                                    {
-                                        stringmodel += " " + carmodels[i];
-                                    }
-                                    else
-                                    {
-                                        stringmodel += carmodels[0];
-                                        carfound = true;
-
-                                    }
+                                    stringmodel += " " + t;
+                                }
+                                else
+                                {
+                                    stringmodel += carmodels[0];
+                                    carfound = true;
 
                                 }
-
                             }
                             if (carfound)
                             {
@@ -242,24 +237,19 @@ namespace RSSRetrieveService
 
                             var carmodels = model.Split(' ');
                             var carfound = false;
-                            string stringmodel = "";
-                            for (int i = 0; i < carmodels.Length; i++)
+                            var stringmodel = "";
+                            foreach (string t in carmodels.Where(t => car.Description.ToUpper().Contains(t.ToUpper())))
                             {
-                                if (car.Description.ToUpper().Contains(carmodels[i].ToUpper()))
+                                if (carfound)
                                 {
-                                    if (carfound)
-                                    {
-                                        stringmodel += " " + carmodels[i];
-                                    }
-                                    else
-                                    {
-                                        stringmodel += carmodels[0];
-                                        carfound = true;
-
-                                    }
+                                    stringmodel += " " + t;
+                                }
+                                else
+                                {
+                                    stringmodel += carmodels[0];
+                                    carfound = true;
 
                                 }
-
                             }
                             if (carfound)
                             {
@@ -324,16 +314,14 @@ namespace RSSRetrieveService
 
                 var regExMiles = dataAccess.GetRegEx("Year");
 
-                foreach (var regEx in regExMiles)
+                foreach (var regex in regExMiles.Select(regEx => new Regex(
+                    regEx.RegExExpression,
+                    RegexOptions.IgnoreCase
+                    | RegexOptions.Singleline
+                    | RegexOptions.CultureInvariant
+                    | RegexOptions.Compiled
+                    )))
                 {
-
-                    var regex = new Regex(
-                        regEx.RegExExpression,
-                        RegexOptions.IgnoreCase
-                        | RegexOptions.Singleline
-                        | RegexOptions.CultureInvariant
-                        | RegexOptions.Compiled
-                        );
                     Match m;
 
                     short tempInt;
@@ -344,7 +332,7 @@ namespace RSSRetrieveService
                         m = regex.Match(emptyColumn.Title);
                         if (m.Success)
                         {
-                            if (Int16.TryParse(m.Value, out tempInt))
+                            if (short.TryParse(m.Value, out tempInt))
                             {
                                 emptyColumn.Year = tempInt;
 
@@ -360,7 +348,7 @@ namespace RSSRetrieveService
                         m = regex.Match(emptyColumn.Description);
                         if (m.Success)
                         {
-                            if (Int16.TryParse(m.Value, out tempInt))
+                            if (short.TryParse(m.Value, out tempInt))
                             {
                                 emptyColumn.Year = tempInt;
 
@@ -600,13 +588,10 @@ namespace RSSRetrieveService
         {
             var query = dataAccess.GetQueryById(id);
             var keywords = query.TitleAndDescripton.Split(',');
-            for (int i = 0; i < keywords.Length; i++)
+            for (var i = 0; i < keywords.Length; i++)
             {
-                if (keywords[i].Contains(" "))
-                {
-                    keywords[i] = "\"" + keywords[i] + "\"";
-
-                }
+           
+                    keywords[i] = "\"" + keywords[i].Trim() + "\"";
             }
             var contains = string.Empty;
             if (!string.IsNullOrEmpty(query.TitleAndDescripton.Trim()))
@@ -661,11 +646,8 @@ namespace RSSRetrieveService
             var ignore = query.Ignore.Split(',');
             for (int i = 0; i < ignore.Length; i++)
             {
-                if (ignore[i].Contains(" "))
-                {
-                    ignore[i] = "\"" + ignore[i] + "\"";
+                     ignore[i] = "\"" + ignore[i].Trim() + "\"";
 
-                }
             }
 
 

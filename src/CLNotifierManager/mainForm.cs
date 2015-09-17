@@ -205,11 +205,8 @@ namespace CLNotifierManager
             var keywords = query.TitleAndDescripton.Split(',');
             for (int i = 0; i < keywords.Length; i++)
             {
-                if (keywords[i].Contains(" "))
-                {
-                    keywords[i] = "\"" + keywords[i] + "\"";
+                    keywords[i] = "\"" + keywords[i].Trim() + "\"";
 
-                }
             }
             var contains = string.Empty;
             if (!string.IsNullOrEmpty(query.TitleAndDescripton.Trim()))
@@ -264,11 +261,8 @@ namespace CLNotifierManager
             var ignore = query.Ignore.Split(',');
             for (int i = 0; i < ignore.Length; i++)
             {
-                if (ignore[i].Contains(" "))
-                {
-                    ignore[i] = "\"" + ignore[i] + "\"";
+                    ignore[i] = "\"" + ignore[i].Trim() + "\"";
 
-                }
             }
 
 

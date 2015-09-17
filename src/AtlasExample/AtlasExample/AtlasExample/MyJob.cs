@@ -36,10 +36,6 @@ namespace RSSRetrieveService
         {
             try
             {
-
-                //    var file = new FileStream(@"C:\Installs\index.xml", FileMode.Open);
-                // var feed = new RssFeed();
-                //  var feed = RssFeed.(file);
                 var ccDal = new DataAccess.Data();
                 var feeds = ccDal.GetActiveFeeds();
                 foreach (var feedrow in feeds)
@@ -49,10 +45,10 @@ namespace RSSRetrieveService
                     var feed = RssFeed.Create(new Uri(feedrow.FeedRssLink));
                     if (feed.Channel.HasExtensions)
                     {
-                        var dcExt = feed.Channel.FindExtension(DublinCoreElementSetSyndicationExtension.MatchByType);
+                        feed.Channel.FindExtension(DublinCoreElementSetSyndicationExtension.MatchByType);
 
                     }
-                    foreach (RssItem item in feed.Channel.Items)
+                    foreach (var item in feed.Channel.Items)
                     {
                         if (item.HasExtensions)
                         {
