@@ -1,22 +1,229 @@
-2015-09-15 14:55:21.8414 RSSRetrieveService.MyJob System.IO.FileNotFoundException: Could not load file or assembly 'Argotic.Common, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469' or one of its dependencies. The system cannot find the file specified.
+2015-09-16 20:06:56.9602 RSSRetrieveService.Program Autofac.Core.DependencyResolutionException: An exception was thrown while executing a resolve operation. See the InnerException for details. ---> Could not load file or assembly 'Common.Logging.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040) (See inner exception for details.) ---> System.IO.FileLoadException: Could not load file or assembly 'Common.Logging.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040) ---> System.IO.FileLoadException: Could not load file or assembly 'Common.Logging.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
+   --- End of inner exception stack trace ---
+   at Quartz.Impl.StdSchedulerFactory.Initialize()
+   at Quartz.Impl.StdSchedulerFactory.GetScheduler() in c:\Program Files (x86)\Jenkins\workspace\Quartz.NET\src\Quartz\Impl\StdSchedulerFactory.cs:line 1102
+   at RSSRetrieveService.MyAutofacModule.<>c.<LoadQuartz>b__1_0(IComponentContext c) in D:\dev\RssTestReader\AtlasExample\AtlasExample\AtlasExample\MyAutofacModule.cs:line 18
+   at Autofac.Builder.RegistrationBuilder.<>c__DisplayClass1`1.<ForDelegate>b__0(IComponentContext c, IEnumerable`1 p)
+   at Autofac.Core.Activators.Delegate.DelegateActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Resolving.InstanceLookup.Activate(IEnumerable`1 parameters)
+   at Autofac.Core.Lifetime.LifetimeScope.GetOrCreateAndShare(Guid id, Func`1 creator)
+   at Autofac.Core.Resolving.InstanceLookup.Execute()
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.AutowiringPropertyInjector.InjectProperties(IComponentContext context, Object instance, Boolean overrideSetValues)
+   at Autofac.Core.Registration.ComponentRegistration.RaiseActivating(IComponentContext context, IEnumerable`1 parameters, Object& instance)
+   at Autofac.Core.Resolving.InstanceLookup.Activate(IEnumerable`1 parameters)
+   at Autofac.Core.Resolving.InstanceLookup.Execute()
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve[TService](IComponentContext context, IEnumerable`1 parameters)
+   at Atlas.HostModule.<Load>b__5(IComponentContext c)
+   at Autofac.Builder.RegistrationBuilder.<>c__DisplayClass1`1.<ForDelegate>b__0(IComponentContext c, IEnumerable`1 p)
+   at Autofac.Core.Activators.Delegate.DelegateActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Resolving.InstanceLookup.Activate(IEnumerable`1 parameters)
+   at Autofac.Core.Lifetime.LifetimeScope.GetOrCreateAndShare(Guid id, Func`1 creator)
+   at Autofac.Core.Resolving.InstanceLookup.Execute()
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve[TService](IComponentContext context, IEnumerable`1 parameters)
+   at Atlas.HostModule.CreateRunner(RunMode mode, IComponentContext c)
+   at Atlas.HostModule.<Load>b__8(IComponentContext c, IEnumerable`1 p)
+   at Autofac.Builder.RegistrationBuilder.<>c__DisplayClass1`1.<ForDelegate>b__0(IComponentContext c, IEnumerable`1 p)
+   at Autofac.Core.Activators.Delegate.DelegateActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Resolving.InstanceLookup.Activate(IEnumerable`1 parameters)
+   at Autofac.Core.Lifetime.LifetimeScope.GetOrCreateAndShare(Guid id, Func`1 creator)
+   at Autofac.Core.Resolving.InstanceLookup.Execute()
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(IComponentRegistration registration, IEnumerable`1 parameters)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.ResolveOperation.Execute(IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve[TService](IComponentContext context, IEnumerable`1 parameters)
+   at Atlas.Factories.ServiceRunnerFactory.Create(RunMode runMode)
+   at Atlas.Initialization.RunInitialization.Initialize[TProcessorHost](Configuration`1 configuration)
+   at Atlas.Host.Run[THostedProcess](Configuration`1 configuration)
+   at Atlas.Host.Start[THostedProcess](Configuration`1 configuration)
+   at RSSRetrieveService.Program.Main(String[] args) in D:\dev\RssTestReader\AtlasExample\AtlasExample\AtlasExample\Program.cs:line 26
+2015-09-16 20:08:14.3704 RSSRetrieveService.Program Autofac.Core.DependencyResolutionException: An exception was thrown while executing a resolve operation. See the InnerException for details. ---> Could not load file or assembly 'Common.Logging.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040) (See inner exception for details.) ---> System.IO.FileLoadException: Could not load file or assembly 'Common.Logging.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040) ---> System.IO.FileLoadException: Could not load file or assembly 'Common.Logging.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
+   --- End of inner exception stack trace ---
+   at Quartz.Impl.StdSchedulerFactory.Initialize()
+   at Quartz.Impl.StdSchedulerFactory.GetScheduler() in c:\Program Files (x86)\Jenkins\workspace\Quartz.NET\src\Quartz\Impl\StdSchedulerFactory.cs:line 1102
+   at RSSRetrieveService.MyAutofacModule.<>c.<LoadQuartz>b__1_0(IComponentContext c) in D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\MyAutofacModule.cs:line 18
+   at Autofac.Builder.RegistrationBuilder.<>c__DisplayClass1`1.<ForDelegate>b__0(IComponentContext c, IEnumerable`1 p)
+   at Autofac.Core.Activators.Delegate.DelegateActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Resolving.InstanceLookup.Activate(IEnumerable`1 parameters)
+   at Autofac.Core.Lifetime.LifetimeScope.GetOrCreateAndShare(Guid id, Func`1 creator)
+   at Autofac.Core.Resolving.InstanceLookup.Execute()
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.AutowiringPropertyInjector.InjectProperties(IComponentContext context, Object instance, Boolean overrideSetValues)
+   at Autofac.Core.Registration.ComponentRegistration.RaiseActivating(IComponentContext context, IEnumerable`1 parameters, Object& instance)
+   at Autofac.Core.Resolving.InstanceLookup.Activate(IEnumerable`1 parameters)
+   at Autofac.Core.Resolving.InstanceLookup.Execute()
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve[TService](IComponentContext context, IEnumerable`1 parameters)
+   at Atlas.HostModule.<Load>b__5(IComponentContext c)
+   at Autofac.Builder.RegistrationBuilder.<>c__DisplayClass1`1.<ForDelegate>b__0(IComponentContext c, IEnumerable`1 p)
+   at Autofac.Core.Activators.Delegate.DelegateActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Resolving.InstanceLookup.Activate(IEnumerable`1 parameters)
+   at Autofac.Core.Lifetime.LifetimeScope.GetOrCreateAndShare(Guid id, Func`1 creator)
+   at Autofac.Core.Resolving.InstanceLookup.Execute()
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve[TService](IComponentContext context, IEnumerable`1 parameters)
+   at Atlas.HostModule.CreateRunner(RunMode mode, IComponentContext c)
+   at Atlas.HostModule.<Load>b__8(IComponentContext c, IEnumerable`1 p)
+   at Autofac.Builder.RegistrationBuilder.<>c__DisplayClass1`1.<ForDelegate>b__0(IComponentContext c, IEnumerable`1 p)
+   at Autofac.Core.Activators.Delegate.DelegateActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Resolving.InstanceLookup.Activate(IEnumerable`1 parameters)
+   at Autofac.Core.Lifetime.LifetimeScope.GetOrCreateAndShare(Guid id, Func`1 creator)
+   at Autofac.Core.Resolving.InstanceLookup.Execute()
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(IComponentRegistration registration, IEnumerable`1 parameters)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.ResolveOperation.Execute(IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve[TService](IComponentContext context, IEnumerable`1 parameters)
+   at Atlas.Factories.ServiceRunnerFactory.Create(RunMode runMode)
+   at Atlas.Initialization.RunInitialization.Initialize[TProcessorHost](Configuration`1 configuration)
+   at Atlas.Host.Run[THostedProcess](Configuration`1 configuration)
+   at Atlas.Host.Start[THostedProcess](Configuration`1 configuration)
+   at RSSRetrieveService.Program.Main(String[] args) in D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\Program.cs:line 26
+2015-09-16 20:14:54.6713 RSSRetrieveService.MyJob System.IO.FileNotFoundException: Could not load file or assembly 'Argotic.Common, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469' or one of its dependencies. The system cannot find the file specified.
 File name: 'Argotic.Common, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469'
    at RSSRetrieveService.MyJob.GetRss()
-   at RSSRetrieveService.MyJob.Execute(IJobExecutionContext context) in D:\dev\RssTestReader\AtlasExample\AtlasExample\AtlasExample\MyJob.cs:line 22
+   at RSSRetrieveService.MyJob.Execute(IJobExecutionContext context) in D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\MyJob.cs:line 22
 
 === Pre-bind state information ===
 LOG: DisplayName = Argotic.Common, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469
  (Fully-specified)
-LOG: Appbase = file:///D:/dev/RssTestReader/AtlasExample/AtlasExample/AtlasExample/bin/Debug/
+LOG: Appbase = file:///D:/dev/CarCrawler/src/AtlasExample/AtlasExample/AtlasExample/bin/Debug/
 LOG: Initial PrivatePath = NULL
 Calling assembly : Argotic.Core, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469.
 ===
 LOG: This bind starts in default load context.
-LOG: Using application configuration file: D:\dev\RssTestReader\AtlasExample\AtlasExample\AtlasExample\bin\Debug\RSSRetrieveService.vshost.exe.Config
+LOG: Using application configuration file: D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\RSSRetrieveService.vshost.exe.Config
 LOG: Using host configuration file: 
 LOG: Using machine configuration file from C:\Windows\Microsoft.NET\Framework64\v4.0.30319\config\machine.config.
 LOG: Post-policy reference: Argotic.Common, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469
-LOG: Attempting download of new URL file:///D:/dev/RssTestReader/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common.DLL.
-LOG: Attempting download of new URL file:///D:/dev/RssTestReader/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common/Argotic.Common.DLL.
-LOG: Attempting download of new URL file:///D:/dev/RssTestReader/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common.EXE.
-LOG: Attempting download of new URL file:///D:/dev/RssTestReader/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common/Argotic.Common.EXE.
+LOG: Attempting download of new URL file:///D:/dev/CarCrawler/src/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common.DLL.
+LOG: Attempting download of new URL file:///D:/dev/CarCrawler/src/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common/Argotic.Common.DLL.
+LOG: Attempting download of new URL file:///D:/dev/CarCrawler/src/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common.EXE.
+LOG: Attempting download of new URL file:///D:/dev/CarCrawler/src/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common/Argotic.Common.EXE.
 
+2015-09-16 20:32:01.7197 RSSRetrieveService.MyJob System.IO.FileNotFoundException: Could not load file or assembly 'Argotic.Common, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469' or one of its dependencies. The system cannot find the file specified.
+File name: 'Argotic.Common, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469'
+   at RSSRetrieveService.MyJob.GetRss()
+   at RSSRetrieveService.MyJob.Execute(IJobExecutionContext context) in D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\MyJob.cs:line 22
+
+=== Pre-bind state information ===
+LOG: DisplayName = Argotic.Common, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469
+ (Fully-specified)
+LOG: Appbase = file:///D:/dev/CarCrawler/src/AtlasExample/AtlasExample/AtlasExample/bin/Debug/
+LOG: Initial PrivatePath = NULL
+Calling assembly : Argotic.Core, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469.
+===
+LOG: This bind starts in default load context.
+LOG: Using application configuration file: D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\RSSRetrieveService.vshost.exe.Config
+LOG: Using host configuration file: 
+LOG: Using machine configuration file from C:\Windows\Microsoft.NET\Framework64\v4.0.30319\config\machine.config.
+LOG: Post-policy reference: Argotic.Common, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469
+LOG: Attempting download of new URL file:///D:/dev/CarCrawler/src/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common.DLL.
+LOG: Attempting download of new URL file:///D:/dev/CarCrawler/src/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common/Argotic.Common.DLL.
+LOG: Attempting download of new URL file:///D:/dev/CarCrawler/src/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common.EXE.
+LOG: Attempting download of new URL file:///D:/dev/CarCrawler/src/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common/Argotic.Common.EXE.
+
+2015-09-16 20:35:23.4025 RSSRetrieveService.MyJob System.IO.FileNotFoundException: Could not load file or assembly 'Argotic.Common, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469' or one of its dependencies. The system cannot find the file specified.
+File name: 'Argotic.Common, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469'
+   at RSSRetrieveService.MyJob.GetRss()
+   at RSSRetrieveService.MyJob.Execute(IJobExecutionContext context) in D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\MyJob.cs:line 22
+
+=== Pre-bind state information ===
+LOG: DisplayName = Argotic.Common, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469
+ (Fully-specified)
+LOG: Appbase = file:///D:/dev/CarCrawler/src/AtlasExample/AtlasExample/AtlasExample/bin/Debug/
+LOG: Initial PrivatePath = NULL
+Calling assembly : Argotic.Core, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469.
+===
+LOG: This bind starts in default load context.
+LOG: Using application configuration file: D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\RSSRetrieveService.vshost.exe.Config
+LOG: Using host configuration file: 
+LOG: Using machine configuration file from C:\Windows\Microsoft.NET\Framework64\v4.0.30319\config\machine.config.
+LOG: Post-policy reference: Argotic.Common, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469
+LOG: Attempting download of new URL file:///D:/dev/CarCrawler/src/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common.DLL.
+LOG: Attempting download of new URL file:///D:/dev/CarCrawler/src/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common/Argotic.Common.DLL.
+LOG: Attempting download of new URL file:///D:/dev/CarCrawler/src/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common.EXE.
+LOG: Attempting download of new URL file:///D:/dev/CarCrawler/src/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common/Argotic.Common.EXE.
+
+2015-09-16 20:38:58.8372 RSSRetrieveService.Program Autofac.Core.DependencyResolutionException: An exception was thrown while executing a resolve operation. See the InnerException for details. ---> Could not load file or assembly 'Common.Logging.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040) (See inner exception for details.) ---> System.IO.FileLoadException: Could not load file or assembly 'Common.Logging.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
+   at Quartz.Impl.StdSchedulerFactory.Initialize()
+   at Quartz.Impl.StdSchedulerFactory.GetScheduler() in c:\Program Files (x86)\Jenkins\workspace\Quartz.NET\src\Quartz\Impl\StdSchedulerFactory.cs:line 1102
+   at RSSRetrieveService.MyAutofacModule.<>c.<LoadQuartz>b__1_0(IComponentContext c) in D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\MyAutofacModule.cs:line 18
+   at Autofac.Builder.RegistrationBuilder.<>c__DisplayClass1`1.<ForDelegate>b__0(IComponentContext c, IEnumerable`1 p)
+   at Autofac.Core.Activators.Delegate.DelegateActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Resolving.InstanceLookup.Activate(IEnumerable`1 parameters)
+   at Autofac.Core.Lifetime.LifetimeScope.GetOrCreateAndShare(Guid id, Func`1 creator)
+   at Autofac.Core.Resolving.InstanceLookup.Execute()
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.AutowiringPropertyInjector.InjectProperties(IComponentContext context, Object instance, Boolean overrideSetValues)
+   at Autofac.Core.Registration.ComponentRegistration.RaiseActivating(IComponentContext context, IEnumerable`1 parameters, Object& instance)
+   at Autofac.Core.Resolving.InstanceLookup.Activate(IEnumerable`1 parameters)
+   at Autofac.Core.Resolving.InstanceLookup.Execute()
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve[TService](IComponentContext context, IEnumerable`1 parameters)
+   at Atlas.HostModule.<Load>b__5(IComponentContext c)
+   at Autofac.Builder.RegistrationBuilder.<>c__DisplayClass1`1.<ForDelegate>b__0(IComponentContext c, IEnumerable`1 p)
+   at Autofac.Core.Activators.Delegate.DelegateActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Resolving.InstanceLookup.Activate(IEnumerable`1 parameters)
+   at Autofac.Core.Lifetime.LifetimeScope.GetOrCreateAndShare(Guid id, Func`1 creator)
+   at Autofac.Core.Resolving.InstanceLookup.Execute()
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve[TService](IComponentContext context, IEnumerable`1 parameters)
+   at Atlas.HostModule.CreateRunner(RunMode mode, IComponentContext c)
+   at Atlas.HostModule.<Load>b__8(IComponentContext c, IEnumerable`1 p)
+   at Autofac.Builder.RegistrationBuilder.<>c__DisplayClass1`1.<ForDelegate>b__0(IComponentContext c, IEnumerable`1 p)
+   at Autofac.Core.Activators.Delegate.DelegateActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Resolving.InstanceLookup.Activate(IEnumerable`1 parameters)
+   at Autofac.Core.Lifetime.LifetimeScope.GetOrCreateAndShare(Guid id, Func`1 creator)
+   at Autofac.Core.Resolving.InstanceLookup.Execute()
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(IComponentRegistration registration, IEnumerable`1 parameters)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.ResolveOperation.Execute(IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve[TService](IComponentContext context, IEnumerable`1 parameters)
+   at Atlas.Factories.ServiceRunnerFactory.Create(RunMode runMode)
+   at Atlas.Initialization.RunInitialization.Initialize[TProcessorHost](Configuration`1 configuration)
+   at Atlas.Host.Run[THostedProcess](Configuration`1 configuration)
+   at Atlas.Host.Start[THostedProcess](Configuration`1 configuration)
+   at RSSRetrieveService.Program.Main(String[] args) in D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\Program.cs:line 26
+2015-09-16 20:44:02.7203 RSSRetrieveService.CcDal Filling Details = Sep Wed 16 20:44 2015
+2015-09-16 20:44:16.4890 RSSRetrieveService.CcDal select * from car where (contains([title],'truck Or silverado Or avalanche Or colorada Or suburban Or tahoe Or dakota Or durango Or ram Or f150 Or f250 Or f350 Or diesel Or ranger Or gmc Or sierra Or yukon Or wrangler Or pathfinder Or armada Or frontier Or titan Or 4runner Or tacoma Or tundra Or t100 Or expedition Or f-150 Or f-250 Or "f-350 "') or contains([description],'truck Or silverado Or avalanche Or colorada Or suburban Or tahoe Or dakota Or durango Or ram Or f150 Or f250 Or f350 Or diesel Or ranger Or gmc Or sierra Or yukon Or wrangler Or pathfinder Or armada Or frontier Or titan Or 4runner Or tacoma Or tundra Or t100 Or expedition Or f-150 Or f-250 Or "f-350 "')) and (Miles <= 130000) and (Year between 2000 and 2014) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-16 20:44:16.9290 RSSRetrieveService.CcDal Total from query Trucks = 4.
+2015-09-16 20:44:16.9406 RSSRetrieveService.CcDal Total after Lambda  Trucks = 4.
+2015-09-16 20:44:17.1282 RSSRetrieveService.CcDal select * from car where (contains([title],'Diesel') or contains([description],'Diesel')) and (Miles <= 140000 or Miles is null) and (Price < 30000) and (Year between 1998 and 2013) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-16 20:44:17.1802 RSSRetrieveService.CcDal Total from query Diesel = 0.
+2015-09-16 20:44:17.1912 RSSRetrieveService.CcDal Total after Lambda  Diesel = 0.
+2015-09-16 20:44:17.2157 RSSRetrieveService.CcDal select * from car where (contains([title],'sun And " city"') or contains([description],'sun And " city"')) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-16 20:44:17.3183 RSSRetrieveService.CcDal Total from query sun city = 0.
+2015-09-16 20:44:17.3288 RSSRetrieveService.CcDal Total after Lambda  sun city = 0.
+2015-09-16 20:44:17.3588 RSSRetrieveService.CcDal select * from car where (contains([title],'Jeep And " wrangler"') or contains([description],'Jeep And " wrangler"')) and (not contains([title],'Rebuild') and not contains([description],'Rebuild')) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-16 20:44:17.4339 RSSRetrieveService.CcDal Total from query Jeep = 3.
+2015-09-16 20:44:17.4339 RSSRetrieveService.CcDal Total after Lambda  Jeep = 3.
+2015-09-16 20:44:17.5319 RSSRetrieveService.CcDal Sending Email 9/16/2015 8:44:17 PM

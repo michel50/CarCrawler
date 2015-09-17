@@ -10,3 +10,11 @@ D:\dev\RssTestReader\DataAccess\bin\Debug\Dapper.xml
 D:\dev\RssTestReader\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
 D:\dev\RssTestReader\DataAccess\obj\Debug\DataAccess.dll
 D:\dev\RssTestReader\DataAccess\obj\Debug\DataAccess.pdb
+D:\dev\CarCrawler\src\DataAccess\bin\Debug\DataAccess.dll
+D:\dev\CarCrawler\src\DataAccess\bin\Debug\DataAccess.pdb
+D:\dev\CarCrawler\src\DataAccess\bin\Debug\Dapper.dll
+D:\dev\CarCrawler\src\DataAccess\bin\Debug\Dapper.pdb
+D:\dev\CarCrawler\src\DataAccess\bin\Debug\Dapper.xml
+D:\dev\CarCrawler\src\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+D:\dev\CarCrawler\src\DataAccess\obj\Debug\DataAccess.dll
+D:\dev\CarCrawler\src\DataAccess\obj\Debug\DataAccess.pdb
