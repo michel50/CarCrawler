@@ -713,7 +713,7 @@ namespace RSSRetrieveService
             }
             if (query.YearPredicate > 0)
             {
-                contains = BuildNumberPredicate(contains, query.YearPredicate.Value, query.YearValue, "Year", query.YearAllowNull);
+                contains = BuildNumberPredicate(contains, query.YearPredicate.Value, query.YearValue, "[Year]", query.YearAllowNull);
 
             }
 

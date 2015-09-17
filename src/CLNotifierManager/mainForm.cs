@@ -328,7 +328,7 @@ namespace CLNotifierManager
             }
             if (query.YearPredicate > 0)
             {
-                contains = BuildNumberPredicate(contains, query.YearPredicate.Value, query.YearValue, "Year", query.YearAllowNull);
+                contains = BuildNumberPredicate(contains, query.YearPredicate.Value, query.YearValue, "[Year]", query.YearAllowNull);
 
             }
             var sqlStr = "select * from car where " + contains + " and " +
