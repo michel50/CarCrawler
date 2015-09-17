@@ -259,7 +259,7 @@ namespace CLNotifierManager
                 query.Ignore = query.Ignore.Trim();
             }
             var ignore = query.Ignore.Split(',');
-            for (int i = 0; i < ignore.Length; i++)
+            for (var i = 0; i < ignore.Length; i++)
             {
                     ignore[i] = "\"" + ignore[i].Trim() + "\"";
 
@@ -279,25 +279,14 @@ namespace CLNotifierManager
                 {
                     contains = "(not contains([title],'";
                 }
-                foreach (var word in ignore)
-                {
-
-                    contains += word.Trim() + " And ";
-
-
-                }
+                contains = ignore.Aggregate(contains, (current, word) => current + (word.Trim() + " And "));
                 if (contains.EndsWith(" And "))
                     contains = contains.Substring(0, contains.Length - 5);
 
 
                 contains += "')";
                 contains += " and not contains([description],'";
-                foreach (var word in ignore)
-                {
-
-                    contains += word.Trim() + " And ";
-
-                }
+                contains = ignore.Aggregate(contains, (current, word) => current + (word.Trim() + " And "));
                 if (contains.EndsWith(" And "))
                     contains = contains.Substring(0, contains.Length - 5);
                 if (contains.EndsWith(" Or "))
