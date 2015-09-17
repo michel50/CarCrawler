@@ -1,0 +1,23 @@
+<?xml version="1.0" standalone="yes"?>
+<TableColumnsDS xmlns="http://tempuri.org/TableColumnsDS.xsd">
+  <TableColumns>
+    <ColumnName>@EmailGeneratedDate</ColumnName>
+    <Type>datetime2</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@EmailSubject</ColumnName>
+    <Type>varchar</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@EmailMessage</ColumnName>
+    <Type>ntext</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@EmailSent</ColumnName>
+    <Type>bit</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@InsertedId</ColumnName>
+    <Type>int</Type>
+  </TableColumns>
+</TableColumnsDS>

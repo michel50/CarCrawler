@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="yes"?>
+<TableColumnsDS xmlns="http://tempuri.org/TableColumnsDS.xsd">
+  <TableColumns>
+    <ColumnName>@Id</ColumnName>
+    <Type>smallint</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@RegExOrder</ColumnName>
+    <Type>smallint</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@RegExType</ColumnName>
+    <Type>nvarchar</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@RegExExpression</ColumnName>
+    <Type>nvarchar</Type>
+  </TableColumns>
+</TableColumnsDS>

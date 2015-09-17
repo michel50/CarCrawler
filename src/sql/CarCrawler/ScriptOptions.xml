@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <ScriptOptions>
+    <MustScriptData>False</MustScriptData>
+    <MustScriptProcs>True</MustScriptProcs>
+    <MustScriptTables>True</MustScriptTables>
+    <MustScriptViews>True</MustScriptViews>
+    <MustScriptUsers>True</MustScriptUsers>
+    <DropAndCreate>True</DropAndCreate>
+  </ScriptOptions>
+</NewDataSet>

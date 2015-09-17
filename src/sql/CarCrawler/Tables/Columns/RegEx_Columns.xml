@@ -1,0 +1,35 @@
+<?xml version="1.0" standalone="yes"?>
+<TableColumnsDS xmlns="http://tempuri.org/TableColumnsDS.xsd">
+  <TableColumns>
+    <ColumnName>Id</ColumnName>
+    <inPrimaryKey>true</inPrimaryKey>
+    <isComputed>false</isComputed>
+    <Type>smallint</Type>
+    <isIdentity>True</isIdentity>
+    <isNullable>False</isNullable>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>RegExOrder</ColumnName>
+    <inPrimaryKey>false</inPrimaryKey>
+    <isComputed>false</isComputed>
+    <Type>smallint</Type>
+    <isIdentity>False</isIdentity>
+    <isNullable>False</isNullable>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>RegExType</ColumnName>
+    <inPrimaryKey>false</inPrimaryKey>
+    <isComputed>false</isComputed>
+    <Type>nvarchar</Type>
+    <isIdentity>False</isIdentity>
+    <isNullable>False</isNullable>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>RegExExpression</ColumnName>
+    <inPrimaryKey>false</inPrimaryKey>
+    <isComputed>false</isComputed>
+    <Type>nvarchar</Type>
+    <isIdentity>False</isIdentity>
+    <isNullable>False</isNullable>
+  </TableColumns>
+</TableColumnsDS>

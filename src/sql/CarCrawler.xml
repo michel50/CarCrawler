@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="yes"?>
+<DatabasesDS xmlns="http://tempuri.org/DatabasesDS.xsd">
+  <DatabaseProject>
+    <ProjectID>0</ProjectID>
+    <DefaultDatabaseName>CarCrawler</DefaultDatabaseName>
+    <SourceDatabases>
+      <ProjectID>0</ProjectID>
+      <DatabaseID>0</DatabaseID>
+      <DatabasesTable>
+        <ServerName>(local)</ServerName>
+        <DatabaseName>CarCrawler</DatabaseName>
+        <ConnectionString>Data Source=(local);DataBase=CarCrawler;Integrated Security=True;Connect Timeout=0;</ConnectionString>
+        <UserName />
+        <CommandSQL />
+        <DatabaseID>0</DatabaseID>
+        <NickName>CarCrawler</NickName>
+        <BaseDirectory>D:\dev\CarCrawler\src\sql\CarCrawler</BaseDirectory>
+      </DatabasesTable>
+    </SourceDatabases>
+  </DatabaseProject>
+</DatabasesDS>

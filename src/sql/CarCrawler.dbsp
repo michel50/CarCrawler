@@ -1,0 +1,6 @@
+ProjectBaseDirectory=D:\dev\CarCrawler\src\sql
+DefaultDatabase=CarCrawler
+UseANSIEncoding=False
+UseExtendedProperties=False
+UseIsql=False
+DisableIntellisense=False

@@ -1,0 +1,8 @@
+<?xml version="1.0" standalone="yes"?>
+<ScriptOptionsDS xmlns="http://tempuri.org/ScriptOptionsDS.xsd">
+  <ScriptOptions>
+    <TableName>CarCrawler</TableName>
+    <ScriptData>true</ScriptData>
+    <ScriptTable>true</ScriptTable>
+  </ScriptOptions>
+</ScriptOptionsDS>

@@ -1,0 +1,35 @@
+<?xml version="1.0" standalone="yes"?>
+<TableColumnsDS xmlns="http://tempuri.org/TableColumnsDS.xsd">
+  <TableColumns>
+    <ColumnName>Id</ColumnName>
+    <inPrimaryKey>true</inPrimaryKey>
+    <isComputed>false</isComputed>
+    <Type>tinyint</Type>
+    <isIdentity>False</isIdentity>
+    <isNullable>False</isNullable>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>PredicateSymbol</ColumnName>
+    <inPrimaryKey>false</inPrimaryKey>
+    <isComputed>false</isComputed>
+    <Type>nvarchar</Type>
+    <isIdentity>False</isIdentity>
+    <isNullable>False</isNullable>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>PredicateFormat</ColumnName>
+    <inPrimaryKey>false</inPrimaryKey>
+    <isComputed>false</isComputed>
+    <Type>nvarchar</Type>
+    <isIdentity>False</isIdentity>
+    <isNullable>True</isNullable>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>PredicateForAll</ColumnName>
+    <inPrimaryKey>false</inPrimaryKey>
+    <isComputed>false</isComputed>
+    <Type>bit</Type>
+    <isIdentity>False</isIdentity>
+    <isNullable>True</isNullable>
+  </TableColumns>
+</TableColumnsDS>

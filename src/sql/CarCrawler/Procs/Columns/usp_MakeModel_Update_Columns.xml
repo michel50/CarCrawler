@@ -1,0 +1,23 @@
+<?xml version="1.0" standalone="yes"?>
+<TableColumnsDS xmlns="http://tempuri.org/TableColumnsDS.xsd">
+  <TableColumns>
+    <ColumnName>@Id</ColumnName>
+    <Type>int</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@Year</ColumnName>
+    <Type>int</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@Make</ColumnName>
+    <Type>nvarchar</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@Model</ColumnName>
+    <Type>nvarchar</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@Style</ColumnName>
+    <Type>nvarchar</Type>
+  </TableColumns>
+</TableColumnsDS>

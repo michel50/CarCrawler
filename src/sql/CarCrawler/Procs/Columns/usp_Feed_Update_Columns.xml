@@ -1,0 +1,23 @@
+<?xml version="1.0" standalone="yes"?>
+<TableColumnsDS xmlns="http://tempuri.org/TableColumnsDS.xsd">
+  <TableColumns>
+    <ColumnName>@Id</ColumnName>
+    <Type>smallint</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@FeedCity</ColumnName>
+    <Type>nvarchar</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@FeedState</ColumnName>
+    <Type>nvarchar</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@FeedRssLink</ColumnName>
+    <Type>nvarchar</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@FeedActive</ColumnName>
+    <Type>bit</Type>
+  </TableColumns>
+</TableColumnsDS>

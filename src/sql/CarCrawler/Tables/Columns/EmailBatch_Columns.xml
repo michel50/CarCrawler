@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="yes"?>
+<TableColumnsDS xmlns="http://tempuri.org/TableColumnsDS.xsd">
+  <TableColumns>
+    <ColumnName>CarId</ColumnName>
+    <inPrimaryKey>true</inPrimaryKey>
+    <isComputed>false</isComputed>
+    <Type>int</Type>
+    <isIdentity>False</isIdentity>
+    <isNullable>False</isNullable>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>EmailId</ColumnName>
+    <inPrimaryKey>true</inPrimaryKey>
+    <isComputed>false</isComputed>
+    <Type>int</Type>
+    <isIdentity>False</isIdentity>
+    <isNullable>False</isNullable>
+  </TableColumns>
+</TableColumnsDS>
