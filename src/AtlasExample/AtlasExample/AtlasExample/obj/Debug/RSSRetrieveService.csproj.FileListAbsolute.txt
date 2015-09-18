@@ -114,3 +114,5 @@ D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Dapper.xm
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\obj\Debug\RSSRetrieveService.csprojResolveAssemblyReference.cache
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Argotic.Common.dll
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Argotic.Web.dll
+D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\AngleSharp.dll
+D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\AngleSharp.xml

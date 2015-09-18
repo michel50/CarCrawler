@@ -1,0 +1,22 @@
+2015-09-15 14:55:21.8414 RSSRetrieveService.MyJob System.IO.FileNotFoundException: Could not load file or assembly 'Argotic.Common, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469' or one of its dependencies. The system cannot find the file specified.
+File name: 'Argotic.Common, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469'
+   at RSSRetrieveService.MyJob.GetRss()
+   at RSSRetrieveService.MyJob.Execute(IJobExecutionContext context) in D:\dev\RssTestReader\AtlasExample\AtlasExample\AtlasExample\MyJob.cs:line 22
+
+=== Pre-bind state information ===
+LOG: DisplayName = Argotic.Common, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469
+ (Fully-specified)
+LOG: Appbase = file:///D:/dev/RssTestReader/AtlasExample/AtlasExample/AtlasExample/bin/Debug/
+LOG: Initial PrivatePath = NULL
+Calling assembly : Argotic.Core, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469.
+===
+LOG: This bind starts in default load context.
+LOG: Using application configuration file: D:\dev\RssTestReader\AtlasExample\AtlasExample\AtlasExample\bin\Debug\RSSRetrieveService.vshost.exe.Config
+LOG: Using host configuration file: 
+LOG: Using machine configuration file from C:\Windows\Microsoft.NET\Framework64\v4.0.30319\config\machine.config.
+LOG: Post-policy reference: Argotic.Common, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469
+LOG: Attempting download of new URL file:///D:/dev/RssTestReader/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common.DLL.
+LOG: Attempting download of new URL file:///D:/dev/RssTestReader/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common/Argotic.Common.DLL.
+LOG: Attempting download of new URL file:///D:/dev/RssTestReader/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common.EXE.
+LOG: Attempting download of new URL file:///D:/dev/RssTestReader/AtlasExample/AtlasExample/AtlasExample/bin/Debug/Argotic.Common/Argotic.Common.EXE.
+
