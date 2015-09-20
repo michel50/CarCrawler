@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Html.cs" />
     <Compile Include="InitialDatabase\Data.cs" />
     <Compile Include="Entities\Car.cs" />
     <Compile Include="Entities\Detail.cs" />

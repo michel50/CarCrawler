@@ -1,28 +1,56 @@
-2015-09-16 21:38:00.2552 RSSRetrieveService.CcDal Filling Details = Sep Wed 16 21:38 2015
-2015-09-16 21:38:14.1301 RSSRetrieveService.CcDal select * from car where (contains([title],'"truck" Or "silverado" Or "avalanche" Or "colorada" Or "suburban" Or "tahoe" Or "dakota" Or "durango" Or "ram" Or "f150" Or "f250" Or "f350" Or "diesel" Or "ranger" Or "gmc" Or "sierra" Or "yukon" Or "wrangler" Or "pathfinder" Or "armada" Or "frontier" Or "titan" Or "4runner" Or "tacoma" Or "tundra" Or "t100" Or "expedition" Or "f-150" Or "f-250" Or "f-350"') or contains([description],'"truck" Or "silverado" Or "avalanche" Or "colorada" Or "suburban" Or "tahoe" Or "dakota" Or "durango" Or "ram" Or "f150" Or "f250" Or "f350" Or "diesel" Or "ranger" Or "gmc" Or "sierra" Or "yukon" Or "wrangler" Or "pathfinder" Or "armada" Or "frontier" Or "titan" Or "4runner" Or "tacoma" Or "tundra" Or "t100" Or "expedition" Or "f-150" Or "f-250" Or "f-350"')) and (Miles <= 130000) and (Year between 2000 and 2014) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
-2015-09-16 21:38:14.2692 RSSRetrieveService.CcDal Total from query Trucks = 4.
-2015-09-16 21:38:14.2692 RSSRetrieveService.CcDal Total after Lambda  Trucks = 4.
-2015-09-16 21:38:14.4398 RSSRetrieveService.CcDal select * from car where (contains([title],'"Diesel"') or contains([description],'"Diesel"')) and (Miles <= 140000 or Miles is null) and (Price < 30000) and (Year between 1998 and 2013) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
-2015-09-16 21:38:14.4738 RSSRetrieveService.CcDal Total from query Diesel = 1.
-2015-09-16 21:38:14.4738 RSSRetrieveService.CcDal Total after Lambda  Diesel = 1.
-2015-09-16 21:38:14.5223 RSSRetrieveService.CcDal select * from car where (contains([title],'"sun" And "city"') or contains([description],'"sun" And "city"')) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
-2015-09-16 21:38:14.5538 RSSRetrieveService.CcDal Total from query sun city = 0.
-2015-09-16 21:38:14.5538 RSSRetrieveService.CcDal Total after Lambda  sun city = 0.
-2015-09-16 21:38:14.5834 RSSRetrieveService.CcDal select * from car where (contains([title],'"Jeep" And "wrangler"') or contains([description],'"Jeep" And "wrangler"')) and (not contains([title],'"Rebuild"') and not contains([description],'"Rebuild"')) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
-2015-09-16 21:38:14.6154 RSSRetrieveService.CcDal Total from query Jeep = 1.
-2015-09-16 21:38:14.6154 RSSRetrieveService.CcDal Total after Lambda  Jeep = 1.
-2015-09-16 21:38:14.6539 RSSRetrieveService.CcDal Sending Email 9/16/2015 9:38:14 PM
-2015-09-16 21:49:34.7426 RSSRetrieveService.CcDal Filling Details = Sep Wed 16 21:49 2015
-2015-09-16 21:49:48.5328 RSSRetrieveService.CcDal select * from car where (contains([title],'"truck" Or "silverado" Or "avalanche" Or "colorada" Or "suburban" Or "tahoe" Or "dakota" Or "durango" Or "ram" Or "f150" Or "f250" Or "f350" Or "diesel" Or "ranger" Or "gmc" Or "sierra" Or "yukon" Or "wrangler" Or "pathfinder" Or "armada" Or "frontier" Or "titan" Or "4runner" Or "tacoma" Or "tundra" Or "t100" Or "expedition" Or "f-150" Or "f-250" Or "f-350"') or contains([description],'"truck" Or "silverado" Or "avalanche" Or "colorada" Or "suburban" Or "tahoe" Or "dakota" Or "durango" Or "ram" Or "f150" Or "f250" Or "f350" Or "diesel" Or "ranger" Or "gmc" Or "sierra" Or "yukon" Or "wrangler" Or "pathfinder" Or "armada" Or "frontier" Or "titan" Or "4runner" Or "tacoma" Or "tundra" Or "t100" Or "expedition" Or "f-150" Or "f-250" Or "f-350"')) and (Miles <= 130000) and ([Year] between 2000 and 2014) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
-2015-09-16 21:49:48.6839 RSSRetrieveService.CcDal Total from query Trucks = 5.
-2015-09-16 21:49:48.6839 RSSRetrieveService.CcDal Total after Lambda  Trucks = 5.
-2015-09-16 21:49:48.8885 RSSRetrieveService.CcDal select * from car where (contains([title],'"Diesel"') or contains([description],'"Diesel"')) and (Miles <= 140000 or Miles is null) and (Price < 30000) and ([Year] between 1998 and 2013) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
-2015-09-16 21:49:48.9255 RSSRetrieveService.CcDal Total from query Diesel = 1.
-2015-09-16 21:49:48.9255 RSSRetrieveService.CcDal Total after Lambda  Diesel = 1.
-2015-09-16 21:49:48.9836 RSSRetrieveService.CcDal select * from car where (contains([title],'"sun" And "city"') or contains([description],'"sun" And "city"')) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
-2015-09-16 21:49:49.0156 RSSRetrieveService.CcDal Total from query sun city = 0.
-2015-09-16 21:49:49.0156 RSSRetrieveService.CcDal Total after Lambda  sun city = 0.
-2015-09-16 21:49:49.0341 RSSRetrieveService.CcDal select * from car where (contains([title],'"Jeep" And "wrangler"') or contains([description],'"Jeep" And "wrangler"')) and (not contains([title],'"Rebuild"') and not contains([description],'"Rebuild"')) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
-2015-09-16 21:49:49.0676 RSSRetrieveService.CcDal Total from query Jeep = 1.
-2015-09-16 21:49:49.0676 RSSRetrieveService.CcDal Total after Lambda  Jeep = 1.
-2015-09-16 21:49:49.1112 RSSRetrieveService.CcDal Sending Email 9/16/2015 9:49:49 PM
+2015-09-18 06:35:23.7381 RSSRetrieveService.CcDal Filling Details = Sep Fri 18 06:35 2015
+2015-09-18 06:35:31.6025 RSSRetrieveService.CcDal select * from car where (contains([title],'"truck" Or "silverado" Or "avalanche" Or "colorada" Or "suburban" Or "tahoe" Or "dakota" Or "durango" Or "ram" Or "f150" Or "f250" Or "f350" Or "diesel" Or "ranger" Or "gmc" Or "sierra" Or "yukon" Or "wrangler" Or "pathfinder" Or "armada" Or "frontier" Or "titan" Or "4runner" Or "tacoma" Or "tundra" Or "t100" Or "expedition" Or "f-150" Or "f-250" Or "f-350"') or contains([description],'"truck" Or "silverado" Or "avalanche" Or "colorada" Or "suburban" Or "tahoe" Or "dakota" Or "durango" Or "ram" Or "f150" Or "f250" Or "f350" Or "diesel" Or "ranger" Or "gmc" Or "sierra" Or "yukon" Or "wrangler" Or "pathfinder" Or "armada" Or "frontier" Or "titan" Or "4runner" Or "tacoma" Or "tundra" Or "t100" Or "expedition" Or "f-150" Or "f-250" Or "f-350"')) and (Miles <= 130000) and ([Year] between 2000 and 2014) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-18 06:35:31.6846 RSSRetrieveService.CcDal Total from query Trucks = 4.
+2015-09-18 06:35:31.6846 RSSRetrieveService.CcDal Total after Lambda  Trucks = 4.
+2015-09-18 06:35:31.7956 RSSRetrieveService.CcDal select * from car where (contains([title],'"Diesel"') or contains([description],'"Diesel"')) and (Miles <= 140000 or Miles is null) and (Price < 30000) and ([Year] between 1998 and 2013) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-18 06:35:31.8170 RSSRetrieveService.CcDal Total from query Diesel = 2.
+2015-09-18 06:35:31.8170 RSSRetrieveService.CcDal Total after Lambda  Diesel = 2.
+2015-09-18 06:35:31.8700 RSSRetrieveService.CcDal select * from car where (contains([title],'"sun" And "city"') or contains([description],'"sun" And "city"')) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-18 06:35:31.8881 RSSRetrieveService.CcDal Total from query sun city = 0.
+2015-09-18 06:35:31.8881 RSSRetrieveService.CcDal Total after Lambda  sun city = 0.
+2015-09-18 06:35:31.8881 RSSRetrieveService.CcDal select * from car where (contains([title],'"Jeep" And "wrangler"') or contains([description],'"Jeep" And "wrangler"')) and (not contains([title],'"Rebuild"') and not contains([description],'"Rebuild"')) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-18 06:35:31.9197 RSSRetrieveService.CcDal Total from query Jeep = 0.
+2015-09-18 06:35:31.9197 RSSRetrieveService.CcDal Total after Lambda  Jeep = 0.
+2015-09-18 06:35:31.9197 RSSRetrieveService.CcDal Sending Email 9/18/2015 6:35:31 AM
+2015-09-18 06:46:44.9971 RSSRetrieveService.CcDal Filling Details = Sep Fri 18 06:46 2015
+2015-09-18 06:46:45.0822 RSSRetrieveService.CcDal select * from car where (contains([title],'"truck" Or "silverado" Or "avalanche" Or "colorada" Or "suburban" Or "tahoe" Or "dakota" Or "durango" Or "ram" Or "f150" Or "f250" Or "f350" Or "diesel" Or "ranger" Or "gmc" Or "sierra" Or "yukon" Or "wrangler" Or "pathfinder" Or "armada" Or "frontier" Or "titan" Or "4runner" Or "tacoma" Or "tundra" Or "t100" Or "expedition" Or "f-150" Or "f-250" Or "f-350"') or contains([description],'"truck" Or "silverado" Or "avalanche" Or "colorada" Or "suburban" Or "tahoe" Or "dakota" Or "durango" Or "ram" Or "f150" Or "f250" Or "f350" Or "diesel" Or "ranger" Or "gmc" Or "sierra" Or "yukon" Or "wrangler" Or "pathfinder" Or "armada" Or "frontier" Or "titan" Or "4runner" Or "tacoma" Or "tundra" Or "t100" Or "expedition" Or "f-150" Or "f-250" Or "f-350"')) and (Miles <= 130000) and ([Year] between 2000 and 2014) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-18 06:46:45.5392 RSSRetrieveService.CcDal Total from query Trucks = 0.
+2015-09-18 06:46:45.5432 RSSRetrieveService.CcDal Total after Lambda  Trucks = 0.
+2015-09-18 06:46:45.5432 RSSRetrieveService.CcDal select * from car where (contains([title],'"Diesel"') or contains([description],'"Diesel"')) and (Miles <= 140000 or Miles is null) and (Price < 30000) and ([Year] between 1998 and 2013) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-18 06:46:45.5754 RSSRetrieveService.CcDal Total from query Diesel = 0.
+2015-09-18 06:46:45.5754 RSSRetrieveService.CcDal Total after Lambda  Diesel = 0.
+2015-09-18 06:46:45.5754 RSSRetrieveService.CcDal select * from car where (contains([title],'"sun" And "city"') or contains([description],'"sun" And "city"')) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-18 06:46:45.6167 RSSRetrieveService.CcDal Total from query sun city = 0.
+2015-09-18 06:46:45.6167 RSSRetrieveService.CcDal Total after Lambda  sun city = 0.
+2015-09-18 06:46:45.6298 RSSRetrieveService.CcDal select * from car where (contains([title],'"Jeep" And "wrangler"') or contains([description],'"Jeep" And "wrangler"')) and (not contains([title],'"Rebuild"') and not contains([description],'"Rebuild"')) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-18 06:46:45.6694 RSSRetrieveService.CcDal Total from query Jeep = 0.
+2015-09-18 06:46:45.6694 RSSRetrieveService.CcDal Total after Lambda  Jeep = 0.
+2015-09-18 06:46:45.6694 RSSRetrieveService.CcDal Sending Email 9/18/2015 6:46:45 AM
+2015-09-18 07:01:45.0928 RSSRetrieveService.CcDal Filling Details = Sep Fri 18 07:01 2015
+2015-09-18 07:01:47.2934 RSSRetrieveService.CcDal select * from car where (contains([title],'"truck" Or "silverado" Or "avalanche" Or "colorada" Or "suburban" Or "tahoe" Or "dakota" Or "durango" Or "ram" Or "f150" Or "f250" Or "f350" Or "diesel" Or "ranger" Or "gmc" Or "sierra" Or "yukon" Or "wrangler" Or "pathfinder" Or "armada" Or "frontier" Or "titan" Or "4runner" Or "tacoma" Or "tundra" Or "t100" Or "expedition" Or "f-150" Or "f-250" Or "f-350"') or contains([description],'"truck" Or "silverado" Or "avalanche" Or "colorada" Or "suburban" Or "tahoe" Or "dakota" Or "durango" Or "ram" Or "f150" Or "f250" Or "f350" Or "diesel" Or "ranger" Or "gmc" Or "sierra" Or "yukon" Or "wrangler" Or "pathfinder" Or "armada" Or "frontier" Or "titan" Or "4runner" Or "tacoma" Or "tundra" Or "t100" Or "expedition" Or "f-150" Or "f-250" Or "f-350"')) and (Miles <= 130000) and ([Year] between 2000 and 2014) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-18 07:01:47.6680 RSSRetrieveService.CcDal Total from query Trucks = 3.
+2015-09-18 07:01:47.6713 RSSRetrieveService.CcDal Total after Lambda  Trucks = 3.
+2015-09-18 07:01:47.7485 RSSRetrieveService.CcDal select * from car where (contains([title],'"Diesel"') or contains([description],'"Diesel"')) and (Miles <= 140000 or Miles is null) and (Price < 30000) and ([Year] between 1998 and 2013) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-18 07:01:47.7708 RSSRetrieveService.CcDal Total from query Diesel = 0.
+2015-09-18 07:01:47.7708 RSSRetrieveService.CcDal Total after Lambda  Diesel = 0.
+2015-09-18 07:01:47.7835 RSSRetrieveService.CcDal select * from car where (contains([title],'"sun" And "city"') or contains([description],'"sun" And "city"')) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-18 07:01:47.8232 RSSRetrieveService.CcDal Total from query sun city = 0.
+2015-09-18 07:01:47.8262 RSSRetrieveService.CcDal Total after Lambda  sun city = 0.
+2015-09-18 07:01:47.8262 RSSRetrieveService.CcDal select * from car where (contains([title],'"Jeep" And "wrangler"') or contains([description],'"Jeep" And "wrangler"')) and (not contains([title],'"Rebuild"') and not contains([description],'"Rebuild"')) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-18 07:01:47.8755 RSSRetrieveService.CcDal Total from query Jeep = 0.
+2015-09-18 07:01:47.8755 RSSRetrieveService.CcDal Total after Lambda  Jeep = 0.
+2015-09-18 07:01:47.8755 RSSRetrieveService.CcDal Sending Email 9/18/2015 7:01:47 AM
+2015-09-18 09:05:56.4111 RSSRetrieveService.CcDal Filling Details = Sep Fri 18 09:05 2015
+2015-09-18 09:06:02.3900 RSSRetrieveService.CcDal select * from car where (contains([title],'"truck" Or "silverado" Or "avalanche" Or "colorada" Or "suburban" Or "tahoe" Or "dakota" Or "durango" Or "ram" Or "f150" Or "f250" Or "f350" Or "diesel" Or "ranger" Or "gmc" Or "sierra" Or "yukon" Or "wrangler" Or "pathfinder" Or "armada" Or "frontier" Or "titan" Or "4runner" Or "tacoma" Or "tundra" Or "t100" Or "expedition" Or "f-150" Or "f-250" Or "f-350"') or contains([description],'"truck" Or "silverado" Or "avalanche" Or "colorada" Or "suburban" Or "tahoe" Or "dakota" Or "durango" Or "ram" Or "f150" Or "f250" Or "f350" Or "diesel" Or "ranger" Or "gmc" Or "sierra" Or "yukon" Or "wrangler" Or "pathfinder" Or "armada" Or "frontier" Or "titan" Or "4runner" Or "tacoma" Or "tundra" Or "t100" Or "expedition" Or "f-150" Or "f-250" Or "f-350"')) and (Miles <= 130000) and ([Year] between 2000 and 2014) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-18 09:06:02.7471 RSSRetrieveService.CcDal Total from query Trucks = 7.
+2015-09-18 09:06:02.7471 RSSRetrieveService.CcDal Total after Lambda  Trucks = 7.
+2015-09-18 09:06:02.8933 RSSRetrieveService.CcDal select * from car where (contains([title],'"Diesel"') or contains([description],'"Diesel"')) and (Miles <= 140000 or Miles is null) and (Price < 30000) and ([Year] between 1998 and 2013) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-18 09:06:02.9153 RSSRetrieveService.CcDal Total from query Diesel = 0.
+2015-09-18 09:06:02.9183 RSSRetrieveService.CcDal Total after Lambda  Diesel = 0.
+2015-09-18 09:06:02.9183 RSSRetrieveService.CcDal select * from car where (contains([title],'"sun" And "city"') or contains([description],'"sun" And "city"')) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-18 09:06:02.9614 RSSRetrieveService.CcDal Total from query sun city = 0.
+2015-09-18 09:06:02.9614 RSSRetrieveService.CcDal Total after Lambda  sun city = 0.
+2015-09-18 09:06:02.9740 RSSRetrieveService.CcDal select * from car where (contains([title],'"Jeep" And "wrangler"') or contains([description],'"Jeep" And "wrangler"')) and (not contains([title],'"Rebuild"') and not contains([description],'"Rebuild"')) and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < 5)
+2015-09-18 09:06:03.0124 RSSRetrieveService.CcDal Total from query Jeep = 1.
+2015-09-18 09:06:03.0124 RSSRetrieveService.CcDal Total after Lambda  Jeep = 1.
+2015-09-18 09:06:03.0431 RSSRetrieveService.CcDal Sending Email 9/18/2015 9:06:03 AM

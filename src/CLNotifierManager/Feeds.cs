@@ -5,8 +5,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
-using CLNotifierManager.Models;
+
 using Dapper;
+using DataAccess.Entities;
 
 
 namespace CLNotifierManager

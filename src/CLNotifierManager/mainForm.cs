@@ -172,7 +172,7 @@ namespace CLNotifierManager
             using (var dialog = new AddQuery())
             {
                 dialog.editType = 2;
-                Models.Query selectedquery = (Models.Query) cbQuery.SelectedItem;
+                Query selectedquery = (Query) cbQuery.SelectedItem;
                 dialog.query = selectedquery;
                 if (dialog.ShowDialog() != DialogResult.OK) return;
                 FillQueryCombo();
