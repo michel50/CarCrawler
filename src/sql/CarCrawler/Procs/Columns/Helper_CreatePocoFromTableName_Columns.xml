@@ -1,0 +1,7 @@
+<?xml version="1.0" standalone="yes"?>
+<TableColumnsDS xmlns="http://tempuri.org/TableColumnsDS.xsd">
+  <TableColumns>
+    <ColumnName>@tableName</ColumnName>
+    <Type>varchar</Type>
+  </TableColumns>
+</TableColumnsDS>

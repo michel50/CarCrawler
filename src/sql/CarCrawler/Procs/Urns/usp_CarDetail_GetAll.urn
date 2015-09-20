@@ -1,0 +1,1 @@
+Server[@Name='ASUSG75VX']/Database[@Name='CarCrawler']/StoredProcedure[@Name='usp_CarDetail_GetAll' and @Schema='dbo']

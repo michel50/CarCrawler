@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="yes"?>
+<TableColumnsDS xmlns="http://tempuri.org/TableColumnsDS.xsd">
+  <TableColumns>
+    <ColumnName>@CarId</ColumnName>
+    <Type>int</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@Html</ColumnName>
+    <Type>nvarchar</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@Processed</ColumnName>
+    <Type>bit</Type>
+  </TableColumns>
+</TableColumnsDS>
