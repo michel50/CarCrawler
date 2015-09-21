@@ -198,6 +198,7 @@ namespace CLNotifierManager
             timer1.Dispose();
         }
 
+
         private string GenSqlStatementForEmails(Int16 id)
         {
             var query = dataLayer.GetQueryById(id);

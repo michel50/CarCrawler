@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -10,8 +11,10 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AngleSharp;
+using DataAccess.Entities;
 using AngleSharp.Parser.Html;
+using DataAccess;
+
 
 namespace TestHtmlParsing
 {
@@ -24,7 +27,7 @@ namespace TestHtmlParsing
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LoadAsync("www.codeproject.com", CancellationToken.None);
+            LoadAsync(this.textBox2.Text, CancellationToken.None);
         }
 
         async Task LoadAsync(String url, CancellationToken cancel)
@@ -41,17 +44,19 @@ namespace TestHtmlParsing
 
             //Make the request
             var request = await http.GetAsync(uri);
+            //var request = await http.GetStringAsync(uri);
             cancel.ThrowIfCancellationRequested();
 
             //Get the response stream
-            var response = await request.Content.ReadAsStreamAsync();
+            var response = await request.Content.ReadAsStringAsync();
             cancel.ThrowIfCancellationRequested();
-
-            // Create a new parser front - end(can be re - used)
-            var parser = new HtmlParser();
-            //Just get the DOM representation
-            var document = parser.Parse(response);
-           
+            var html = new Html();
+            txtHtml.Text = response;
+            html.CarId = Convert.ToInt32(textBox1.Text);
+            html.html = response;
+            html.Processed = false;
+            var data = new Data();
+            data.InsertHtmlData(html);
             cancel.ThrowIfCancellationRequested();
 
             /* Use the document */
@@ -73,7 +78,38 @@ namespace TestHtmlParsing
 
             return new Uri("http://www.google.com/search?q=" + url);
         }
+
+
+        private void SleepRandom()
+        {
+            // Quartz .net  [DisallowConcurrentExecution]    http://www.quartz-scheduler.net/documentation/faq.html
+            // more https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=quartz+net++%5BDisallowConcurrentExecution%5D
+            Random random = new Random();
+            var mseconds = random.Next(75, 100) * 1000;
+            Thread.Sleep(mseconds);
+            Debug.Write("sleped from " + (mseconds / 1000) );
+        }
+
+        private void btnParse_Click(object sender, EventArgs e)
+        {
+            // Create a new parser front - end(can be re - used)
+            var parser = new HtmlParser();
+            //Just get the DOM representation
+            var document = parser.Parse(txtHtml.Text);
+
+            var attrgroup = document.All.Where(m => m.LocalName == "p" && m.ClassList.Contains("attrgroup"));
+            foreach (var att in attrgroup)
+            {
+                var c = att.GetDeepControlsByType<AngleSharp.Dom.IElement>();
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            SleepRandom();
+        }
     }
+
 
     internal class async
     {

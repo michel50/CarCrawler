@@ -35,6 +35,13 @@ namespace DataAccess
                              }, commandType: CommandType.StoredProcedure);
         }
 
+        public void InsertHtmlData(Html html)
+        {
+            conn.Execute("usp_Html_Create",
+
+                        html, commandType: CommandType.StoredProcedure);
+        }
+
         public void BatchEmailSent(int emailId)
         {
             conn.Execute("usp_Email_UpdateEmailSent", new { Id = emailId }, commandType: CommandType.StoredProcedure
