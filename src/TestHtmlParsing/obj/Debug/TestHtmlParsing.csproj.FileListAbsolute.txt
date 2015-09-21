@@ -1,0 +1,16 @@
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\TestHtmlParsing.exe.config
+D:\dev\CarCrawler\src\TestHtmlParsing\obj\Debug\TestHtmlParsing.csprojResolveAssemblyReference.cache
+D:\dev\CarCrawler\src\TestHtmlParsing\obj\Debug\TestHtmlParsing.mainForm.resources
+D:\dev\CarCrawler\src\TestHtmlParsing\obj\Debug\TestHtmlParsing.Properties.Resources.resources
+D:\dev\CarCrawler\src\TestHtmlParsing\obj\Debug\TestHtmlParsing.csproj.GenerateResource.Cache
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\TestHtmlParsing.exe
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\TestHtmlParsing.pdb
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\AngleSharp.dll
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\AngleSharp.xml
+D:\dev\CarCrawler\src\TestHtmlParsing\obj\Debug\TestHtmlParsing.exe
+D:\dev\CarCrawler\src\TestHtmlParsing\obj\Debug\TestHtmlParsing.pdb
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\DataAccess.dll
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\Dapper.dll
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\DataAccess.pdb
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\Dapper.pdb
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\Dapper.xml
