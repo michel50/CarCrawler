@@ -15,6 +15,7 @@ Proc.usp_CarDetail_Update
 Proc.usp_CheckForDup
 Table.Email
 Table.EmailBatch
+Table.Html
 Proc.usp_CleanTables
 Proc.usp_Email_Create
 Proc.usp_Email_Delete
@@ -36,7 +37,6 @@ Proc.usp_Feed_GetAll
 Proc.usp_Feed_GetSingle
 Proc.usp_Feed_Search
 Proc.usp_Feed_Update
-Table.Html
 Proc.usp_Html_Create
 Proc.usp_Html_GetAllUnProcessed
 Proc.usp_Html_GetOne

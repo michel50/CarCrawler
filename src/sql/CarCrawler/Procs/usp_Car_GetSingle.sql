@@ -11,12 +11,12 @@ GO
 -- Author:          WAC
 -- Create date:     8/20/2013 10:43:19 PM
 -- =============================================
-Create Procedure dbo.usp_Car_GetSingle 
+CREATE Procedure [dbo].[usp_Car_GetSingle] 
 	@Id int 
 AS
 BEGIN
     Set NoCount On;
-	SELECT Id, DateIn, Link, Title, Description, Make, Model, Miles, Year, Price, FeedId, Processed, EmailSent
+	SELECT Id, DateIn, Link, Title, Description, Make, Model, Miles, Year, Price, FeedId, Processed, EmailSent, HtmlDownloaded
 	FROM [CarCrawler].[dbo].[Car]
 	WHERE
 		Id = @Id 

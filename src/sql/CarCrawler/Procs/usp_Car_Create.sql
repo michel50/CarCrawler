@@ -24,7 +24,8 @@ CREATE Procedure [dbo].[usp_Car_Create]
 	@Price money=null, 
 	@FeedId smallint=null, 
 	@Processed bit=0, 
-	@EmailSent bit=0
+	@EmailSent bit=0,
+	@HtmlDownloaded bit = 0
 
 As
 Begin   
@@ -39,9 +40,9 @@ Begin Try
 	if not exists(select 1 from [CarCrawler].[dbo].[Car] where Title = @Title and DateIn = @DateIn) 
 	begin
     Insert Into [CarCrawler].[dbo].[Car]
-		(DateIn, Link, Title, Description, Make, Model, Miles, Year, Price, FeedId, Processed, EmailSent)
+		(DateIn, Link, Title, Description, Make, Model, Miles, Year, Price, FeedId, Processed, EmailSent, HtmlDownloaded)
 	Values
-		(@DateIn, @Link, @Title, @Description, @Make, @Model, @Miles, @Year, @Price, @FeedId, @Processed, @EmailSent) 
+		(@DateIn, @Link, @Title, @Description, @Make, @Model, @Miles, @Year, @Price, @FeedId, @Processed, @EmailSent, 0) 
     
     
 	end

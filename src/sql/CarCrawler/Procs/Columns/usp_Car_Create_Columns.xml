@@ -48,4 +48,8 @@
     <ColumnName>@EmailSent</ColumnName>
     <Type>bit</Type>
   </TableColumns>
+  <TableColumns>
+    <ColumnName>@HtmlDownloaded</ColumnName>
+    <Type>bit</Type>
+  </TableColumns>
 </TableColumnsDS>

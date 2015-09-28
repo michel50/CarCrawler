@@ -17,4 +17,7 @@ if exists(select 1 from Html where CarId = @CarId)
 	update Html set Html = @Html, Processed = 0 where CarId = @CarId
 else
 	insert Html(CarId, Html, Processed) values(@CarId, @Html, 0)
+
+
+update Car set HtmlDownloaded = 1 where Id = @CarId
 GO
