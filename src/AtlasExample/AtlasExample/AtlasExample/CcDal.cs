@@ -5,15 +5,18 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web.UI;
 using DataAccess;
 using DataAccess.Entities;
 using NLog;
 using RSSRetrieveService.Properties;
+using AngleSharp.Parser.Html;
 
 namespace RSSRetrieveService
 {
@@ -49,8 +52,10 @@ namespace RSSRetrieveService
                     DataAccess.UpdateCarDetail(car);
                     DataAccess.CheckForDups(car.Id);
                 }
-                SendOutEmails();
-                SendMail();
+                DownloadPage();
+                // TODO uncomment
+               // SendOutEmails();
+               // SendMail();
 
             }
             catch (Exception ex)
@@ -558,6 +563,93 @@ namespace RSSRetrieveService
 
         }
 
+        private void DownloadPage()
+        {
+            foreach (var q in DataAccess.GetEmailQueries().FindAll(x => x.Email == true))
+            {
+
+                var htmls = DataAccess.GetHtmlToScrape(GenSqlStatementForHtmlParsing(q.Id));
+                Logger.Debug("Total from query {0} = {1}.", q.Subject, htmls.Count);
+                var emailss = htmls.Where(e => e.HtmlDownloaded == false);
+                Logger.Debug("Total after Lambda  {0} = {1}.", q.Subject, emailss.Count());
+                foreach (var html in htmls)
+                {
+                    Logger.Debug(html.Link);
+                    LoadAsync(html.Id, html.Link, CancellationToken.None);
+                    SleepRandom();
+                }
+                //var batches = emailss.Partition(10);
+                //foreach (var batch in batches)
+                //{
+                //    WriteHtml(batch, q.Subject);
+
+                //}
+            }
+        }
+
+        async Task LoadAsync(int carId, String url, CancellationToken cancel)
+        {
+            var handler = new HttpClientHandler { AllowAutoRedirect = false };
+            var http = new HttpClient(handler);
+            http.DefaultRequestHeaders.Add("User-Agent",
+                                             "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident / 6.0)");
+
+
+
+            //Get a correct URL from the given one (e.g. transform codeproject.com to http://codeproject.com)
+            var uri = Sanitize(url);
+
+            //Make the request
+            var request = await http.GetAsync(uri);
+            //var request = await http.GetStringAsync(uri);
+            cancel.ThrowIfCancellationRequested();
+
+            //Get the response stream
+            var response = await request.Content.ReadAsStringAsync();
+            cancel.ThrowIfCancellationRequested();
+            var html = new Html
+            {
+                CarId = carId,
+                html = response,
+                Processed = false
+            };
+            var data = new Data();
+            data.InsertHtmlData(html);
+            cancel.ThrowIfCancellationRequested();
+
+            /* Use the document */
+        }
+        protected Uri Sanitize(String url)
+        {
+            Uri uri;
+
+            if (File.Exists(url))
+                url = "file://localhost/" + url.Replace('\\', '/');
+
+            var lurl = url.ToLower();
+
+            if (!lurl.StartsWith("file://") && !lurl.StartsWith("http://") && !lurl.StartsWith("https://"))
+                url = "http://" + url;
+
+            if (Uri.TryCreate(url, UriKind.Absolute, out uri))
+                return uri;
+
+            return new Uri("http://www.google.com/search?q=" + url);
+        }
+
+
+        private void SleepRandom()
+        {
+            // Quartz .net  [DisallowConcurrentExecution]    http://www.quartz-scheduler.net/documentation/faq.html
+            // more https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=quartz+net++%5BDisallowConcurrentExecution%5D
+            Random random = new Random();
+            var mseconds = random.Next(75, 100) * 1000;
+            Thread.Sleep(mseconds);
+            
+        }
+
+
+
         private void SendOutEmails()
         {
             foreach (var q in DataAccess.GetEmailQueries().FindAll(x => x.Email == true))
@@ -575,7 +667,101 @@ namespace RSSRetrieveService
                 }
             }
         }
+        private string GenSqlStatementForHtmlParsing(Int16 id)
+        {
+            var query = DataAccess.GetQueryById(id);
+            var keywords = query.TitleAndDescripton.Split(',');
+            for (var i = 0; i < keywords.Length; i++)
+            {
 
+                keywords[i] = "\"" + keywords[i].Trim() + "\"";
+            }
+            var contains = string.Empty;
+            if (!string.IsNullOrEmpty(query.TitleAndDescripton.Trim()))
+            {
+                contains = "(contains([title],'";
+
+                foreach (var word in keywords)
+                {
+                    if (query.AndOr == 1)
+                    {
+                        contains += word.Trim() + " And ";
+                    }
+                    else
+                    {
+                        contains += word.Trim() + " Or ";
+                    }
+                }
+                if (contains.EndsWith(" And "))
+                    contains = contains.Substring(0, contains.Length - 5);
+                if (contains.EndsWith(" Or "))
+                    contains = contains.Substring(0, contains.Length - 4);
+
+                contains += "')";
+                contains += " or contains([description],'";
+                foreach (var word in keywords)
+                {
+                    if (query.AndOr == 1)
+                    {
+                        contains += word.Trim() + " And ";
+                    }
+                    else
+                    {
+                        contains += word.Trim() + " Or ";
+                    }
+                }
+                if (contains.EndsWith(" And "))
+                    contains = contains.Substring(0, contains.Length - 5);
+                if (contains.EndsWith(" Or "))
+                    contains = contains.Substring(0, contains.Length - 4);
+                if (keywords.Length > 0)
+                {
+                    contains += "'))";
+                }
+
+            }
+            query.Ignore = string.IsNullOrEmpty(query.Ignore) ? string.Empty : query.Ignore.Trim();
+            var ignore = query.Ignore.Split(',');
+            for (var i = 0; i < ignore.Length; i++)
+            {
+                ignore[i] = "\"" + ignore[i].Trim() + "\"";
+
+            }
+
+
+
+
+
+            if (!string.IsNullOrEmpty(query.Ignore))
+            {
+                if (!string.IsNullOrEmpty(contains))
+                {
+                    contains += " and (not contains([title],'";
+                }
+                else
+                {
+                    contains = "(not contains([title],'";
+                }
+                contains = ignore.Aggregate(contains, (current, word) => current + (word.Trim() + " And "));
+                if (contains.EndsWith(" And "))
+                    contains = contains.Substring(0, contains.Length - 5);
+
+
+                contains += "')";
+                contains += " and not contains([description],'";
+                contains = ignore.Aggregate(contains, (current, word) => current + (word.Trim() + " And "));
+                if (contains.EndsWith(" And "))
+                    contains = contains.Substring(0, contains.Length - 5);
+                if (contains.EndsWith(" Or "))
+                    contains = contains.Substring(0, contains.Length - 4);
+                contains += "'))";
+
+
+            }
+            var sqlStr = "select * from car where " + contains + " and (HtmlDownloaded = 0) and (datediff(day, DateIn, getdate()) < " + Settings.Default.maxemaildate + ")"; //(FeedId in (select Id From Feed where FeedActive = 1))
+            Logger.Debug(sqlStr);
+            return sqlStr;
+        }
         private string GenSqlStatementForEmails(Int16 id)
         {
             var query = DataAccess.GetQueryById(id);

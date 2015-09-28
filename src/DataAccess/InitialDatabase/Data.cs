@@ -170,6 +170,11 @@ namespace DataAccess
             return conn.Query<Car>(sql).ToList();
         }
 
+        public List<Car> GetHtmlToScrape(string sql)
+        {
+            return conn.Query<Car>(sql).ToList();
+        }
+
         public void UpdateMailSent(int id)
         {
             conn.Execute("usp_Car_UpdateEmailSent", new {Id = id}, commandType: CommandType.StoredProcedure);

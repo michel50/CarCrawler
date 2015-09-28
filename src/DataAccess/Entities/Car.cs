@@ -17,6 +17,7 @@ namespace DataAccess.Entities
         public Int16? FeedId { get; set; }
         public bool Processed { get; set; }
         public bool EmailSent { get; set; }
+        public bool HtmlDownloaded { get; set; }
     }
 
     public class CarDetail

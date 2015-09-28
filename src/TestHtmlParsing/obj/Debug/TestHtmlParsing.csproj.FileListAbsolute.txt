@@ -14,3 +14,14 @@ D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\Dapper.dll
 D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\DataAccess.pdb
 D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\Dapper.pdb
 D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\Dapper.xml
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\MongoDB.Bson.dll
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\MongoDB.Driver.Core.dll
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\MongoDB.Driver.dll
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\MongoDB.Driver.Legacy.dll
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\MongoDbGenericDao.dll
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\Sparc.MongoQueue.dll
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\MongoDB.Bson.xml
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\MongoDB.Driver.xml
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\MongoDB.Driver.Legacy.xml
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\MongoDbGenericDao.pdb
+D:\dev\CarCrawler\src\TestHtmlParsing\bin\Debug\Sparc.MongoQueue.pdb

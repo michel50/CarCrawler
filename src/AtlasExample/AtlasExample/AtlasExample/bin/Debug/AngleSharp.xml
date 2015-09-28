@@ -5207,102 +5207,6 @@
             Gets if the element is currently focused.
             </summary>
         </member>
-        <member name="T:AngleSharp.Dom.Element.BoundLocation">
-            <summary>
-            Represents an updateable location (url) holder.
-            </summary>
-        </member>
-        <member name="T:AngleSharp.Dom.ILocation">
-            <summary>
-            The Location interface represents the location of the object it is
-            linked to. Changes done on it are reflected on the object it relates
-            to. 
-            </summary>
-        </member>
-        <member name="T:AngleSharp.Dom.IUrlUtilities">
-            <summary>
-            The URLUtils interface defines utility methods to work with URLs.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.IUrlUtilities.Href">
-            <summary>
-            Gets or sets the whole URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.IUrlUtilities.Protocol">
-            <summary>
-            Gets or sets the protocol scheme of the URL, including the final
-            ':'.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.IUrlUtilities.Host">
-            <summary>
-            Gets or sets the host, that is the hostname, a ':', and the port of
-            the URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.IUrlUtilities.HostName">
-            <summary>
-            Gets or sets the domain of the URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.IUrlUtilities.Port">
-            <summary>
-            Gets or sets the port number of the URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.IUrlUtilities.PathName">
-            <summary>
-            Gets or sets an initial '/' followed by the path of the URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.IUrlUtilities.Search">
-            <summary>
-            Gets or sets a '?' followed by the parameters of the URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.IUrlUtilities.Hash">
-            <summary>
-            Gets or sets a '#' followed by the fragment identifier of the URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.IUrlUtilities.UserName">
-            <summary>
-            Gets or sets the username specified before the domain name..
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.IUrlUtilities.Password">
-            <summary>
-            Gets or sets the password specified before the domain name.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.IUrlUtilities.Origin">
-            <summary>
-            Gets the canonical form of the origin of the specific location.
-            </summary>
-        </member>
-        <member name="M:AngleSharp.Dom.ILocation.Assign(System.String)">
-            <summary>
-            Loads the resource at the URL provided in parameter.
-            </summary>
-            <param name="url">The path to the resource.</param>
-        </member>
-        <member name="M:AngleSharp.Dom.ILocation.Replace(System.String)">
-            <summary>
-            Replaces the current resource with the one at the provided URL. The
-            difference from the assign() method is that after using replace()
-            the current page will not be saved in session History, meaning the
-            user won't be able to use the back button to navigate to it. 
-            </summary>
-            <param name="url">
-            The path to the resource that should replace the current resource.
-            </param>
-        </member>
-        <member name="M:AngleSharp.Dom.ILocation.Reload">
-            <summary>
-            Reloads the resource from the current URL.
-            </summary>
-        </member>
         <member name="T:AngleSharp.Dom.Html.IHtmlElement">
             <summary>
             The HTMLElement interface represents any HTML element. Some elements directly
@@ -7181,6 +7085,193 @@
             Gets or sets the name attribute.
             </summary>
         </member>
+        <member name="T:AngleSharp.Dom.Html.HtmlUrlBaseElement">
+            <summary>
+            Represents the base for a / area elements.
+            </summary>
+        </member>
+        <member name="T:AngleSharp.Dom.IUrlUtilities">
+            <summary>
+            The URLUtils interface defines utility methods to work with URLs.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.IUrlUtilities.Href">
+            <summary>
+            Gets or sets the whole URL.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.IUrlUtilities.Protocol">
+            <summary>
+            Gets or sets the protocol scheme of the URL, including the final
+            ':'.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.IUrlUtilities.Host">
+            <summary>
+            Gets or sets the host, that is the hostname, a ':', and the port of
+            the URL.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.IUrlUtilities.HostName">
+            <summary>
+            Gets or sets the domain of the URL.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.IUrlUtilities.Port">
+            <summary>
+            Gets or sets the port number of the URL.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.IUrlUtilities.PathName">
+            <summary>
+            Gets or sets an initial '/' followed by the path of the URL.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.IUrlUtilities.Search">
+            <summary>
+            Gets or sets a '?' followed by the parameters of the URL.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.IUrlUtilities.Hash">
+            <summary>
+            Gets or sets a '#' followed by the fragment identifier of the URL.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.IUrlUtilities.UserName">
+            <summary>
+            Gets or sets the username specified before the domain name..
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.IUrlUtilities.Password">
+            <summary>
+            Gets or sets the password specified before the domain name.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.IUrlUtilities.Origin">
+            <summary>
+            Gets the canonical form of the origin of the specific location.
+            </summary>
+        </member>
+        <member name="M:AngleSharp.Dom.Html.HtmlUrlBaseElement.#ctor(AngleSharp.Dom.Document,System.String,System.String,AngleSharp.Html.NodeFlags)">
+            <summary>
+            Creates a new element.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.Download">
+            <summary>
+            Gets or sets the linked resource is intended to be downloaded rather
+            than displayed. The value represent the proposed name of the file.
+            If the name is not a valid filename of the underlying OS, the
+            navigator will adapt it.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.Href">
+            <summary>
+            Gets or sets the value of the href attribute.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.Hash">
+            <summary>
+            Gets or sets the fragment identifier, including the leading hash
+            mark ('#'), if any, in the referenced URL.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.Host">
+            <summary>
+            Gets or sets the hostname and port (if it's not the default port) in
+            the referenced URL.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.HostName">
+            <summary>
+            Gets or sets the hostname in the referenced URL.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.PathName">
+            <summary>
+            Gets or sets the path name component, if any, of the referenced URL.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.Port">
+            <summary>
+            Gets or sets the port component, if any, of the referenced URL.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.Protocol">
+            <summary>
+            Gets or sets the protocol component, including trailing colon (':'),
+            of the referenced URL.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.UserName">
+            <summary>
+            Gets or sets the URL's username.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.Password">
+            <summary>
+            Gets or sets the URL's password.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.Search">
+            <summary>
+            Gets or sets the search element, including leading question mark
+            ('?'), if any, of the referenced URL.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.Origin">
+            <summary>
+            Get's the URL's origin.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.TargetLanguage">
+            <summary>
+            Gets or sets the language of the linked resource.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.Media">
+            <summary>
+            Gets or sets the target media of the linked resource.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.Relation">
+            <summary>
+            Gets or sets the value indicating relationships of the current
+            document to the linked resource.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.RelationList">
+            <summary>
+            Gets the value indicating relationships of the current document to
+            the linked resource, as a list of tokens.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.Ping">
+            <summary>
+            Gets the ping HTML attribute, as a settable list of tokens.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.Target">
+            <summary>
+            Gets or sets the browsing context in which to open the linked
+            resource.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.Type">
+            <summary>
+            Gets or sets the MIME type of the linked resource.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.IsVisited">
+            <summary>
+            Gets or sets if the link has been visited.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Dom.Html.HtmlUrlBaseElement.IsActive">
+            <summary>
+            Gets or sets if the link is currently active.
+            </summary>
+        </member>
         <member name="T:AngleSharp.Dom.ShadowRoot">
             <summary>
             Represents a shadow root.
@@ -8030,6 +8121,79 @@
             Wrapper for Task.FromResult, but also works with .NET 4 and SL due
             to same naming as TaskEx in BCL.Async.
             </summary>
+        </member>
+        <member name="T:AngleSharp.Html.FormDataSetEntry">
+            <summary>
+            Encapsulates the data contained in an entry.
+            </summary>
+        </member>
+        <member name="M:AngleSharp.Html.FormDataSetEntry.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new form data set entry.
+            </summary>
+            <param name="name">The name of the field.</param>
+            <param name="type">The type of the field.</param>
+        </member>
+        <member name="M:AngleSharp.Html.FormDataSetEntry.Accept(AngleSharp.Html.IFormDataSetVisitor)">
+            <summary>
+            Accepts the provided visitor instance.
+            </summary>
+            <param name="visitor">The visitor to accept.</param>
+        </member>
+        <member name="M:AngleSharp.Html.FormDataSetEntry.Contains(System.String,System.Text.Encoding)">
+            <summary>
+            Checks if the provided boundary is already mentioned in the content.
+            </summary>
+            <param name="boundary">The string to check for.</param>
+            <param name="encoding">The encoding to use for the string.</param>
+            <returns>True if the boundary is matched, otherwise false.</returns>
+        </member>
+        <member name="P:AngleSharp.Html.FormDataSetEntry.HasName">
+            <summary>
+            Gets if the name has been given.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Html.FormDataSetEntry.Name">
+            <summary>
+            Gets the entry's name.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Html.FormDataSetEntry.Type">
+            <summary>
+            Gets the entry's type.
+            </summary>
+        </member>
+        <member name="T:AngleSharp.Html.IFormDataSetVisitor">
+            <summary>
+            Defines the visitor for form data set entries.
+            </summary>
+        </member>
+        <member name="M:AngleSharp.Html.IFormDataSetVisitor.Text(AngleSharp.Html.FormDataSetEntry,System.String)">
+            <summary>
+            Called by text form data set entries.
+            </summary>
+            <param name="entry">The entry to pass.</param>
+            <param name="value">The contained text value.</param>
+        </member>
+        <member name="M:AngleSharp.Html.IFormDataSetVisitor.File(AngleSharp.Html.FormDataSetEntry,System.String,System.String,AngleSharp.Dom.Io.IFile)">
+            <summary>
+            Called by file form data set entries.
+            </summary>
+            <param name="entry">The entry to pass.</param>
+            <param name="fileName">The name of the file.</param>
+            <param name="contentType">The MIME-type.</param>
+            <param name="content">The contained content.</param>
+        </member>
+        <member name="T:AngleSharp.Html.IFormSubmitter">
+            <summary>
+            Strategy for serializing form data sets.
+            </summary>
+        </member>
+        <member name="M:AngleSharp.Html.IFormSubmitter.Serialize(System.IO.StreamWriter)">
+            <summary>
+            Serializes the visited form data set to the stream.
+            </summary>
+            <param name="stream">The stream writer to use.</param>
         </member>
         <member name="T:AngleSharp.IBindable">
             <summary>
@@ -23644,6 +23808,35 @@
             <param name="sender">The callback this argument.</param>
             <param name="ev">The event arguments.</param>
         </member>
+        <member name="T:AngleSharp.Dom.ILocation">
+            <summary>
+            The Location interface represents the location of the object it is
+            linked to. Changes done on it are reflected on the object it relates
+            to. 
+            </summary>
+        </member>
+        <member name="M:AngleSharp.Dom.ILocation.Assign(System.String)">
+            <summary>
+            Loads the resource at the URL provided in parameter.
+            </summary>
+            <param name="url">The path to the resource.</param>
+        </member>
+        <member name="M:AngleSharp.Dom.ILocation.Replace(System.String)">
+            <summary>
+            Replaces the current resource with the one at the provided URL. The
+            difference from the assign() method is that after using replace()
+            the current page will not be saved in session History, meaning the
+            user won't be able to use the back button to navigate to it. 
+            </summary>
+            <param name="url">
+            The path to the resource that should replace the current resource.
+            </param>
+        </member>
+        <member name="M:AngleSharp.Dom.ILocation.Reload">
+            <summary>
+            Reloads the resource from the current URL.
+            </summary>
+        </member>
         <member name="T:AngleSharp.Dom.IMutationRecord">
             <summary>
             MutationRecord defines an interface that will be passed to the
@@ -25588,6 +25781,12 @@
             <summary>
             Common methods and variables of all tokenizers.
             </summary>
+        </member>
+        <member name="M:AngleSharp.Parser.BaseTokenizer.FlushBuffer">
+            <summary>
+            Gets the currently stored buffer text before clearing it.
+            </summary>
+            <returns>The content before the cleanup.</returns>
         </member>
         <member name="M:AngleSharp.Parser.BaseTokenizer.Dispose">
             <summary>
@@ -29532,6 +29731,11 @@
             Bundles information stored in HTML forms.
             </summary>
         </member>
+        <member name="M:AngleSharp.Html.FormDataSet.#ctor">
+            <summary>
+            Creates a new form data set with a randomly generated boundary.
+            </summary>
+        </member>
         <member name="M:AngleSharp.Html.FormDataSet.AsMultipart(System.Text.Encoding)">
             <summary>
             Applies the multipart/form-data algorithm.
@@ -29556,6 +29760,37 @@
             <param name="encoding">(Optional) Explicit encoding.</param>
             <returns>A stream containing the body.</returns>
         </member>
+        <member name="M:AngleSharp.Html.FormDataSet.AsJson">
+            <summary>
+            Applies the application json encoding algorithm.
+            https://darobin.github.io/formic/specs/json/#the-application-json-encoding-algorithm
+            </summary>
+            <returns>A stream containing the body.</returns>
+        </member>
+        <member name="M:AngleSharp.Html.FormDataSet.As(AngleSharp.Html.IFormSubmitter,System.Text.Encoding)">
+            <summary>
+            Applies the given submitter to serialize the form data set.
+            </summary>
+            <param name="submitter">The algorithm to use.</param>
+            <param name="encoding">(Optional) Explicit encoding.</param>
+            <returns>A stream containing the body.</returns>
+        </member>
+        <member name="M:AngleSharp.Html.FormDataSet.Append(System.String,System.String,System.String)">
+            <summary>
+            Appends a text entry to the form data set.
+            </summary>
+            <param name="name">The name of the entry.</param>
+            <param name="value">The value of the entry.</param>
+            <param name="type">The type of the entry.</param>
+        </member>
+        <member name="M:AngleSharp.Html.FormDataSet.Append(System.String,AngleSharp.Dom.Io.IFile,System.String)">
+            <summary>
+            Appends a file entry to the form data set.
+            </summary>
+            <param name="name">The name of the entry.</param>
+            <param name="value">The value of the entry.</param>
+            <param name="type">The type of the entry.</param>
+        </member>
         <member name="M:AngleSharp.Html.FormDataSet.Build(System.Text.Encoding,System.Action{System.IO.StreamWriter})">
             <summary>
             Builds the specific request body / url.
@@ -29563,6 +29798,13 @@
             <param name="encoding">The encoding to use.</param>
             <param name="process">The action to generate the content.</param>
             <returns>The constructed stream.</returns>
+        </member>
+        <member name="M:AngleSharp.Html.FormDataSet.Connect(AngleSharp.Html.IFormSubmitter,System.IO.StreamWriter)">
+            <summary>
+            Connects the selected submitter to the constructed stream.
+            </summary>
+            <param name="submitter">The submitter to use.</param>
+            <param name="stream">The utilized stream writer.</param>
         </member>
         <member name="M:AngleSharp.Html.FormDataSet.ReplaceCharset(System.Text.Encoding)">
             <summary>
@@ -29599,51 +29841,6 @@
         <member name="P:AngleSharp.Html.FormDataSet.Boundary">
             <summary>
             Gets the chosen boundary.
-            </summary>
-        </member>
-        <member name="T:AngleSharp.Html.FormDataSet.FormDataSetEntry">
-            <summary>
-            Encapsulates the data contained in an entry.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Html.FormDataSet.FormDataSetEntry.HasName">
-            <summary>
-            Gets if the name has been given.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Html.FormDataSet.FormDataSetEntry.Name">
-            <summary>
-            Gets the entry's name.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Html.FormDataSet.FormDataSetEntry.Type">
-            <summary>
-            Gets the entry's type.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Html.FormDataSet.TextDataSetEntry.HasValue">
-            <summary>
-            Gets if the value has been given.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Html.FormDataSet.TextDataSetEntry.Value">
-            <summary>
-            Gets the entry's value.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Html.FormDataSet.FileDataSetEntry.HasValue">
-            <summary>
-            Gets if the value has been given.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Html.FormDataSet.FileDataSetEntry.HasValueBody">
-            <summary>
-            Gets if the value has a body and type.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Html.FormDataSet.FileDataSetEntry.Value">
-            <summary>
-            Gets the entry's value.
             </summary>
         </member>
         <member name="T:AngleSharp.Extensions.StringExtensions">
@@ -29803,16 +30000,16 @@
             <param name="str">The string to examine.</param>
             <returns>A new string, which excludes the line breaks.</returns>
         </member>
-        <member name="M:AngleSharp.Extensions.StringExtensions.StripLeadingTailingSpaces(System.String)">
+        <member name="M:AngleSharp.Extensions.StringExtensions.StripLeadingTrailingSpaces(System.String)">
             <summary>
-            Strips all leading and tailing space characters from the given string.
+            Strips all leading and trailing space characters from the given string.
             </summary>
             <param name="str">The string to examine.</param>
             <returns>A new string, which excludes the leading and tailing spaces.</returns>
         </member>
-        <member name="M:AngleSharp.Extensions.StringExtensions.StripLeadingTailingSpaces(System.Char[])">
+        <member name="M:AngleSharp.Extensions.StringExtensions.StripLeadingTrailingSpaces(System.Char[])">
             <summary>
-            Strips all leading and tailing space characters from the given char array.
+            Strips all leading and trailing space characters from the given char array.
             </summary>
             <param name="array">The array of characters to examine.</param>
             <returns>A new string, which excludes the leading and tailing spaces.</returns>
@@ -33429,6 +33626,11 @@
             Gets the default mime-type for JavaScript scripts: text/javascript.
             </summary>
         </member>
+        <member name="F:AngleSharp.Network.MimeTypes.ApplicationJson">
+            <summary>
+            Gets the mime-type for JSON text: application/json.
+            </summary>
+        </member>
         <member name="F:AngleSharp.Network.MimeTypes.ApplicationXml">
             <summary>
             Gets the mime-type for XML applications: application/xml.
@@ -36867,6 +37069,16 @@
             <param name="value">The color value to be created.</param>
             <returns>The status if the string can be converted.</returns>
         </member>
+        <member name="M:AngleSharp.Css.Values.Color.FromFlexHex(System.String)">
+            <summary>
+            Returns the color of non-CSS colors in a special IE notation known
+            as "flex hex". Computes the part without the hash and possible color
+            names. More information can be found at:
+            http://scrappy-do.blogspot.de/2004/08/little-rant-about-microsoft-internet.html
+            </summary>
+            <param name="color">The color string to evaluate.</param>
+            <returns>The color for the color string.</returns>
+        </member>
         <member name="M:AngleSharp.Css.Values.Color.FromHsl(System.Single,System.Single,System.Single)">
             <summary>
             Returns the color that represents the given HSL values.
@@ -37535,128 +37747,14 @@
             Gets or sets the character encoding for the target resource.
             </summary>
         </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.Download">
-            <summary>
-            Gets or sets the linked resource is intended to be downloaded rather than displayed.
-            The value represent the proposed name of the file. If the name is not a valid filename of the
-            underlying OS, the navigator will adapt it.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.Href">
-            <summary>
-            Gets or sets the value of the href attribute.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.Hash">
-            <summary>
-            Gets or sets the fragment identifier, including the leading hash
-            mark ('#'), if any, in the referenced URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.Host">
-            <summary>
-            Gets or sets the hostname and port (if it's not the default port)
-            in the referenced URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.HostName">
-            <summary>
-            Gets or sets the hostname in the referenced URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.PathName">
-            <summary>
-            Gets or sets the path name component, if any, of the
-            referenced URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.Port">
-            <summary>
-            Gets or sets the port component, if any, of the referenced URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.Protocol">
-            <summary>
-            Gets or sets the protocol component, including trailing
-            colon (':'), of the referenced URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.UserName">
-            <summary>
-            Gets or sets the URL's username.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.Password">
-            <summary>
-            Gets or sets the URL's password.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.Search">
-            <summary>
-            Gets or sets the search element, including leading question
-            mark ('?'), if any, of the referenced URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.Origin">
-            <summary>
-            Get's the URL's origin.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.TargetLanguage">
-            <summary>
-            Gets or sets the language code for the linked resource.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.Media">
-            <summary>
-            Gets or sets the media HTML attribute, indicating the intended
-            media for the linked resource.
-            </summary>
-        </member>
         <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.Name">
             <summary>
             Gets or sets the anchor name.
             </summary>
         </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.Relation">
-            <summary>
-            Gets or sets the rel HTML attribute, specifying the relationship
-            of the target object to the link object.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.RelationList">
-            <summary>
-            Gets the rel HTML attribute, as a list of tokens.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.Ping">
-            <summary>
-            Gets the ping HTML attribute, as a settable list of otkens.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.Target">
-            <summary>
-            Gets or sets the name of the target frame to which the resource applies.
-            </summary>
-        </member>
         <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.Text">
             <summary>
             Gets or sets the text of the anchor tag (same as TextContent).
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.Type">
-            <summary>
-            Gets or sets the type of the resource. If present, the attribute must be a valid MIME type.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.IsVisited">
-            <summary>
-            Gets or sets if the link has been visited.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAnchorElement.IsActive">
-            <summary>
-            Gets or sets if the link is currently active.
             </summary>
         </member>
         <member name="T:AngleSharp.Dom.Html.HtmlAppletElement">
@@ -37674,100 +37772,6 @@
             Creates a new area element.
             </summary>
         </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.Download">
-            <summary>
-            Gets or sets the linked resource is intended to be downloaded rather than displayed.
-            The value represent the proposed name of the file. If the name is not a valid filename of the
-            underlying OS, the navigator will adapt it.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.Href">
-            <summary>
-            Gets or sets the value of the href attribute.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.Hash">
-            <summary>
-            Gets or sets the fragment identifier, including the leading hash
-            mark ('#'), if any, in the referenced URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.Host">
-            <summary>
-            Gets or sets the hostname and port (if it's not the default port)
-            in the referenced URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.HostName">
-            <summary>
-            Gets or sets the hostname in the referenced URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.PathName">
-            <summary>
-            Gets or sets the path name component, if any, of the
-            referenced URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.Port">
-            <summary>
-            Gets or sets the port component, if any, of the referenced URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.Protocol">
-            <summary>
-            Gets or sets the protocol component, including trailing
-            colon (':'), of the referenced URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.UserName">
-            <summary>
-            Gets or sets the URL's username.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.Password">
-            <summary>
-            Gets or sets the URL's password.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.Search">
-            <summary>
-            Gets or sets the search element, including leading question
-            mark ('?'), if any, of the referenced URL.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.Origin">
-            <summary>
-            Get's the URL's origin.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.TargetLanguage">
-            <summary>
-            Gets or sets the language of the linked resource.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.Media">
-            <summary>
-            Gets or sets the target media of the linked resource.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.Relation">
-            <summary>
-            Gets or sets the value indicating relationships of the
-            current document to the linked resource.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.RelationList">
-            <summary>
-            Gets the value indicating relationships of the current
-            document to the linked resource, as a list of tokens.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.Ping">
-            <summary>
-            Gets the ping HTML attribute, as a settable list of otkens.
-            </summary>
-        </member>
         <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.AlternativeText">
             <summary>
             Gets or sets the alternative text for the element.
@@ -37783,26 +37787,6 @@
             Gets or sets the shape of the hot-spot, limited to known values.
             The known values are: circle, default. poly, rect. The missing
             value is rect.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.Target">
-            <summary>
-            Gets or sets the browsing context in which to open the linked resource.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.Type">
-            <summary>
-            Gets or sets the MIME type of the linked resource.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.IsVisited">
-            <summary>
-            Gets or sets if the link has been visited.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Dom.Html.HtmlAreaElement.IsActive">
-            <summary>
-            Gets or sets if the link is currently active.
             </summary>
         </member>
         <member name="T:AngleSharp.Dom.Html.HtmlAudioElement">
@@ -41454,15 +41438,14 @@
             The abstract base class of any XML token.
             </summary>
         </member>
+        <member name="P:AngleSharp.Parser.Xml.XmlToken.IsIgnorable">
+            <summary>
+            Gets if the token can be ignored.
+            </summary>
+        </member>
         <member name="P:AngleSharp.Parser.Xml.XmlToken.Type">
             <summary>
             Gets the type of the token.
-            </summary>
-        </member>
-        <member name="P:AngleSharp.Parser.Xml.XmlToken.IsIgnorable">
-            <summary>
-            Gets if the token is a character token and contains a
-            white-space character.
             </summary>
         </member>
         <member name="P:AngleSharp.Parser.Xml.XmlToken.Position">
@@ -41495,9 +41478,14 @@
             Creates a new character token.
             </summary>
         </member>
-        <member name="M:AngleSharp.Parser.Xml.XmlCharacterToken.#ctor(AngleSharp.TextPosition,System.Char)">
+        <member name="M:AngleSharp.Parser.Xml.XmlCharacterToken.#ctor(AngleSharp.TextPosition,System.String)">
             <summary>
             Creates a new character token with the given character.
+            </summary>
+        </member>
+        <member name="P:AngleSharp.Parser.Xml.XmlCharacterToken.IsIgnorable">
+            <summary>
+            Gets if the token only contains spaces.
             </summary>
         </member>
         <member name="P:AngleSharp.Parser.Xml.XmlCharacterToken.Data">
@@ -41820,7 +41808,7 @@
             Checks if the character sequence is equal to ]]&gt;.
             </summary>
             <param name="ch">The character to examine.</param>
-            <returns>The token if everything is alright.</returns>
+            <returns>The given character.</returns>
         </member>
         <member name="M:AngleSharp.Parser.Xml.XmlTokenizer.CData(System.Char)">
             <summary>
