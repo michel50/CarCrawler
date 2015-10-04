@@ -23,6 +23,7 @@ namespace HtmlDLProdConsumService
 
         public void Execute(IJobExecutionContext context)
         {
+            Console.WriteLine("Starting");
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             var ct = new CancellationToken();
@@ -50,6 +51,7 @@ namespace HtmlDLProdConsumService
                 // Write hours, minutes and seconds.
 
                 Logger.Debug("Time elapsed: {0:hh\\:mm\\:ss}", stopwatch.Elapsed);
+                Console.WriteLine("Done");
 
             }
             catch (Exception ex)
