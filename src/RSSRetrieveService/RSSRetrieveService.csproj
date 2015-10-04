@@ -141,7 +141,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DataAccess\DataAccess.csproj">
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{b4061462-56f8-4b05-adeb-a1a0a2226a74}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>

@@ -22,7 +22,7 @@ namespace HtmlDLProdConsumService
 
         private static void LoadServices(ContainerBuilder builder)
         {
-            builder.RegisterType<DLService>().As<IAmAHostedProcess>().PropertiesAutowired();
+            builder.RegisterType<DlService>().As<IAmAHostedProcess>().PropertiesAutowired();
         }
     }
 }

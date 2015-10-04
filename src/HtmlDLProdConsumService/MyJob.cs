@@ -21,7 +21,6 @@ namespace HtmlDLProdConsumService
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-
         public void Execute(IJobExecutionContext context)
         {
             var stopwatch = new Stopwatch();
@@ -61,11 +60,10 @@ namespace HtmlDLProdConsumService
 
         }
 
-
         private class AscDataBlocks
         {
-            public long Start;
-            public long End;
+            public long Start { get; set; }
+            public long End { get; set; }
             private readonly Data _dataAccess = new Data();
        
             //public string ThreadName;
@@ -77,25 +75,21 @@ namespace HtmlDLProdConsumService
 
             private void DownloadPage(ITargetBlock<Parse> targetAscTransform)
             {
-                foreach (var q in _dataAccess.GetEmailQueries().FindAll(x => x.Email == true))
+                var totalPages = 1;
+                foreach (var parse in _dataAccess.GetEmailQueries().FindAll(x => x.Email == true).Select(q => _dataAccess.GetHtmlToScrape(GenSqlStatementForHtmlParsing(q.Id))).SelectMany(cars => cars.Select(car => new Parse
                 {
-
-                    var cars = _dataAccess.GetHtmlToScrape(GenSqlStatementForHtmlParsing(q.Id));
-                    var emailss = cars.Where(e => e.HtmlDownloaded == false);
-                    foreach (var car in cars)
-                    {
-                        var parse = new Parse
-                        {
-                            CarId = car.Id,
-                            Link = car.Link,
-                            UserAgent = _dataAccess.GetRandomUserAgent()
-                        };
-                        targetAscTransform.Post(parse);
-                    }
+                    CarId = car.Id,
+                    Link = car.Link,
+                    UserAgent = _dataAccess.GetRandomUserAgent()
+                })))
+                {
+                    targetAscTransform.Post(parse);
+                    totalPages++;
                 }
+                Logger.Debug("Total for this run is {0}", totalPages);
             }
 
-            private async Task LoadAsync(int carId, String url, string userAgent, CancellationToken cancel)
+            private static async Task LoadAsync(int carId, string url, string userAgent, CancellationToken cancel)
             {
                 var handler = new HttpClientHandler {AllowAutoRedirect = false};
                 var http = new HttpClient(handler);
@@ -145,7 +139,7 @@ namespace HtmlDLProdConsumService
                 return new Uri("http://www.google.com/search?q=" + url);
             }
 
-            private string GenSqlStatementForHtmlParsing(Int16 id)
+            private string GenSqlStatementForHtmlParsing(short id)
             {
                 var query = _dataAccess.GetQueryById(id);
                 var keywords = query.TitleAndDescripton.Split(',');
@@ -239,64 +233,13 @@ namespace HtmlDLProdConsumService
                 return sqlStr;
             }
 
-            private void SleepRandom()
+            private static void ProcessDataBuffer(Parse ascDataSet)
             {
-                const int multiplier = 10;
-                // Quartz .net  [DisallowConcurrentExecution]    http://www.quartz-scheduler.net/documentation/faq.html
-                // more https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=quartz+net++%5BDisallowConcurrentExecution%5D
-                Random random = new Random();
-                var mseconds = random.Next(55, 90)*multiplier;
-                Thread.Sleep(mseconds);
-                //Console.WriteLine("slept from " + mseconds);
-            }
-
-            private void ProcessDataBuffer(Parse ascDataSet)
-            {
-                #region commented
-
-                //if (ascDataSet.CarId  %3 == 0)
-                //{
-                //    // Testing if this will delay all the other data processing
-
-                //    var c = new CryptoRandom();
-                //    var st = c.Next(45000, 90000);
-                //    var tast = LoadAsync(ascDataSet.CarId, ascDataSet.Link, ascDataSet.UserAgent, CancellationToken.None);
-                //    Thread.Sleep(st);
-                //    Console.WriteLine("{0} divide by 3 slept from  {1}", ascDataSet.Link, st);
-                //}
-                //else
-                //{
-                //    if (ascDataSet.CarId %2 == 0)
-                //    {
-
-
-                //        var c = new CryptoRandom();
-                //        var st = c.Next(45000, 90000);
-                //        var tast = LoadAsync(ascDataSet.CarId, ascDataSet.Link, ascDataSet.UserAgent, CancellationToken.None);
-                //        Thread.Sleep(st);
-                //        Console.WriteLine("{0} even slept from  {1}", ascDataSet.Link, st);
-
-                //    }
-                //    else
-                //    {
-
-
-                //        var c = new CryptoRandom();
-                //        var st = c.Next(45000, 90000);
-                //        var tast = LoadAsync(ascDataSet.CarId, ascDataSet.Link, ascDataSet.UserAgent, CancellationToken.None);
-                //        Thread.Sleep(st);
-                //        Console.WriteLine("{0} odd slept from  {1}", ascDataSet.Link, st);
-
-                //    }
-                //}
-
-                #endregion
-
                 var c = new CryptoRandom();
                 var st = c.Next(45000, 90000);
                 var tast = LoadAsync(ascDataSet.CarId, ascDataSet.Link, ascDataSet.UserAgent, CancellationToken.None);
                 Thread.Sleep(st);
-                Console.WriteLine("{0} slept from  {1}", ascDataSet.Link, st);
+                Debug.WriteLine("{0} slept from  {1}", ascDataSet.Link, st);
             }
 
             // Demonstrates the consumption end of the producer and consumer pattern. 
@@ -344,7 +287,7 @@ namespace HtmlDLProdConsumService
             long value = BitConverter.ToInt64(bytes, 0) & long.MaxValue;
 
             // Scale it to 0->1
-            return (double)value / (((double)Int64.MaxValue) + 1025.0d);
+            return value / (long.MaxValue + 1025.0d);
         }
 
         /// <summary> Fills the elements of the specified array of bytes with random numbers. </summary>
@@ -374,8 +317,8 @@ namespace HtmlDLProdConsumService
             if (minValue == maxValue) return minValue;
 
             double sample = Sample();
-            double range = (double)maxValue - (double)minValue;
-            return (int)((sample * (double)range) + (double)minValue);
+            double range = maxValue - (double)minValue;
+            return (int)((sample * range) + minValue);
         }
 
         #region IDisposible implementation

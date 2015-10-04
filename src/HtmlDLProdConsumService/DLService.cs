@@ -3,7 +3,7 @@ using Quartz;
 
 namespace HtmlDLProdConsumService
 {
-    public class DLService: IAmAHostedProcess
+    public class DlService: IAmAHostedProcess
     {
 
         private int IntervalInMinutes { get; set; }

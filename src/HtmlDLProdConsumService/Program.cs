@@ -6,7 +6,7 @@ namespace HtmlDLProdConsumService
 {
     public class Program
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// The main entry point for the application.
@@ -16,7 +16,7 @@ namespace HtmlDLProdConsumService
             try
             {
                 var configuration =
-                    Host.UseAppConfig<DLService>()
+                    Host.UseAppConfig<DlService>()
                         .AllowMultipleInstances()
                         .WithRegistrations(b => b.RegisterModule(new MyAutofacModule()))
                         .WithArguments(args);
@@ -25,7 +25,7 @@ namespace HtmlDLProdConsumService
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
             }
         }
     }
