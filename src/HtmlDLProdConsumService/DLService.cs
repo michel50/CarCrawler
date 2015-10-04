@@ -17,11 +17,11 @@ namespace HtmlDLProdConsumService
         {
             IntervalInMinutes = Properties.Settings.Default.IntervalInMinutes;
             var job = JobBuilder.Create<MyJob>()
-                .WithIdentity("Job1")
+                .WithIdentity("JobDL")
                 .Build();
 
             var trigger = TriggerBuilder.Create()
-                .WithIdentity("Trigger1")
+                .WithIdentity("TriggerDL")
                 .StartNow()
                 .WithCalendarIntervalSchedule(x => x.WithIntervalInMinutes(IntervalInMinutes))
                 .Build();
