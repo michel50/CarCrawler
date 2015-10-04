@@ -42,6 +42,11 @@ namespace DataAccess
                         html, commandType: CommandType.StoredProcedure);
         }
 
+        public List<Html> GetAllHtmUnprocessed()
+        {
+            return conn.Query<Html>("usp_Html_GetAllUnProcessed", commandType: CommandType.StoredProcedure).ToList();
+        } 
+
         public void BatchEmailSent(int emailId)
         {
             conn.Execute("usp_Email_UpdateEmailSent", new { Id = emailId }, commandType: CommandType.StoredProcedure

@@ -9,22 +9,29 @@ using System.Linq;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataAccess.Entities;
 using AngleSharp.Parser.Html;
 using DataAccess;
+using MongoDB.Driver.Linq;
+using TestHtmlParsing.DTos;
 
 
 namespace TestHtmlParsing
 {
     public partial class mainForm : Form
     {
+        private List<Html> htmlList = new List<Html>();
+        private List<PropValue> propValue = new List<PropValue>();
+        private DataAccess.Data data = new Data();
         public mainForm()
         {
             InitializeComponent();
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -100,6 +107,7 @@ namespace TestHtmlParsing
         }
         private void btnParse_Click(object sender, EventArgs e)
         {
+            txtParse.Text = string.Empty;
             // Create a new parser front - end(can be re - used)
             var parser = new HtmlParser();
             //Just get the DOM representation
@@ -109,12 +117,114 @@ namespace TestHtmlParsing
             foreach (var att in attrgroup)
             {
                 var c = att.GetDeepControlsByType<AngleSharp.Dom.IElement>();
+                foreach (var elem in c)
+                {
+                    txtParse.AppendText(elem.InnerHtml.AppendLine());
+                }
             }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
             SleepRandom();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FillHtmlList();
+        }
+
+        private void FillHtmlList()
+        {
+            htmlList.Clear();
+            htmlList = data.GetAllHtmUnprocessed();
+            foreach (var id in htmlList)
+            {
+                comboBox1.Items.Add(id.CarId);
+            }
+        }
+
+        private void InsertPropValue(string InputText)
+        {
+         
+        var MyRegex = new Regex("(?<prop>\\w+):\\s<b>(?<value>\\w+)</b>",
+               RegexOptions.Multiline
+                | RegexOptions.CultureInvariant
+                | RegexOptions.Compiled);
+
+
+        //// Capture the first Match, if any, in the InputText
+         Match m = MyRegex.Match(InputText);
+            if (m.Success)
+            {
+               var match = new PropValue();
+                match.Prop = m.Groups["prop"].Value;
+                match.Value = m.Groups["value"].Value;
+                propValue.Add(match);
+            }
+
+        //// Capture all Matches in the InputText
+        // MatchCollection ms = MyRegex.Matches(InputText);
+
+        //// Test to see if there is a match in the InputText
+        // bool IsMatch = MyRegex.IsMatch(InputText);
+
+        //// Get the names of all the named and numbered capture groups
+        // string[] GroupNames = MyRegex.GetGroupNames();
+
+        //// Get the numbers of all the named and numbered capture groups
+        // int[] GroupNumbers = MyRegex.GetGroupNumbers();
+    }
+
+    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtHtml.Text = htmlList.Where(x => x.CarId == Convert.ToInt32(comboBox1.SelectedItem)).First().html;
+            // txtHtml.Text = e.In(htmlList)
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            htmlList.Clear();
+            htmlList = data.GetAllHtmUnprocessed();
+            var myList = new List<string>();
+            foreach (var doc in htmlList)
+            {
+                var parser = new HtmlParser();
+                //Just get the DOM representation
+                var document = parser.Parse(doc.html);
+
+                var attrgroup = document.All.Where(m => m.LocalName == "p" && m.ClassList.Contains("attrgroup"));
+                foreach (var att in attrgroup)
+                {
+                    var c = att.GetDeepControlsByType<AngleSharp.Dom.IElement>();
+                    foreach (var elem in c)
+                    {
+                        if (!string.IsNullOrEmpty(elem.InnerHtml.Trim()) && elem.InnerHtml.Contains("<b>"))
+                        {
+                            myList.Add(elem.InnerHtml);
+                            InsertPropValue(elem.InnerHtml);
+                        }
+
+                    }
+                }
+            }
+            myList.Sort();
+            foreach (var s in myList)
+            {
+                txtParse.AppendText(s.AppendLine());
+            }
+
+            var uniqueProps =
+                (from dbo in propValue
+                  select dbo.Prop).Distinct().OrderBy(name => name);
+
+            htmlList.Clear();
+            foreach (var upv in uniqueProps)
+            {
+                txtHtml.AppendText(upv.AppendLine());
+            }
+
+
         }
     }
 

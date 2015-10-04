@@ -28,5 +28,9 @@ namespace TestHtmlParsing
             }
         }
 
+        public static string AppendLine(this string text)
+        {
+            return text + System.Environment.NewLine;
+        }
     }
 }
