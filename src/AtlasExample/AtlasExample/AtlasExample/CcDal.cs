@@ -31,7 +31,7 @@ namespace RSSRetrieveService
         public CcDal()
         {
             DataAccess = new Data();
-         //   dataAccess.CleanTables();
+            // DataAccess.CleanTables();
             _emptyList = DataAccess.GetEmptyDetail();
             _feeds = DataAccess.GetActiveFeeds();
             _predicates = DataAccess.GetPredicates();
@@ -40,6 +40,7 @@ namespace RSSRetrieveService
         {
             try
             {
+                Console.WriteLine("Starting");
                 DataAccess.CleanDB();
                 Logger.Debug("Filling Details = {0}", DateTime.Now.ToString("MMM ddd d HH:mm yyyy"));
                 FillMillage();
@@ -52,10 +53,11 @@ namespace RSSRetrieveService
                     DataAccess.UpdateCarDetail(car);
                     DataAccess.CheckForDups(car.Id);
                 }
-                DownloadPage();
+                //DownloadPage();
                 // TODO uncomment
-               // SendOutEmails();
-               // SendMail();
+              //  SendOutEmails();
+              //  SendMail();
+                Console.WriteLine("Done");
 
             }
             catch (Exception ex)

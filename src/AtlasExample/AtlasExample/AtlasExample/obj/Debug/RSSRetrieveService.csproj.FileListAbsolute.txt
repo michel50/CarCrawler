@@ -84,14 +84,15 @@ D:\dev\RssTestReader\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Dapper.xml
 D:\dev\RssTestReader\AtlasExample\AtlasExample\AtlasExample\obj\Debug\RSSRetrieveService.csprojResolveAssemblyReference.cache
 D:\dev\RssTestReader\AtlasExample\AtlasExample\AtlasExample\obj\Debug\RSSRetrieveService.exe
 D:\dev\RssTestReader\AtlasExample\AtlasExample\AtlasExample\obj\Debug\RSSRetrieveService.pdb
-D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\RSSRetrieveService.exe.config
-D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\obj\Debug\RSSRetrieveService.exe
-D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\obj\Debug\RSSRetrieveService.pdb
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\NLog.config
+D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\RSSRetrieveService.exe.config
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\RSSRetrieveService.exe
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\RSSRetrieveService.pdb
+D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\AngleSharp.dll
+D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Argotic.Common.dll
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Argotic.Core.dll
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Argotic.Extensions.dll
+D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Argotic.Web.dll
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Atlas.dll
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Autofac.dll
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Common.Logging.Core.dll
@@ -101,6 +102,7 @@ D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\NLog.dll
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Quartz.dll
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Dapper.dll
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\DataAccess.pdb
+D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\AngleSharp.xml
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Autofac.xml
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Common.Logging.pdb
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Common.Logging.xml
@@ -112,7 +114,5 @@ D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Quartz.xm
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Dapper.pdb
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Dapper.xml
 D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\obj\Debug\RSSRetrieveService.csprojResolveAssemblyReference.cache
-D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Argotic.Common.dll
-D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\Argotic.Web.dll
-D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\AngleSharp.dll
-D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\bin\Debug\AngleSharp.xml
+D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\obj\Debug\RSSRetrieveService.exe
+D:\dev\CarCrawler\src\AtlasExample\AtlasExample\AtlasExample\obj\Debug\RSSRetrieveService.pdb

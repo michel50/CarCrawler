@@ -156,6 +156,12 @@ namespace DataAccess
                          commandType: CommandType.StoredProcedure);
         }
 
+        public string GetRandomUserAgent()
+        {
+            var ua = conn.Query<UserAgent>("usp_GetRandomUserAgent", commandType: CommandType.StoredProcedure).ToList();
+            return ua.First().UserAgents;
+        }
+
         public List<Query> GetEmailQueries()
         {
             return conn.Query<Query>("usp_Query_ForEmail", commandType: CommandType.StoredProcedure).ToList();

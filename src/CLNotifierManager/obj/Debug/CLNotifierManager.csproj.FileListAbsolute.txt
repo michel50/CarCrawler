@@ -56,10 +56,8 @@ D:\dev\RssTestReader\CLNotifierManager\bin\Debug\Dapper.xml
 D:\dev\RssTestReader\CLNotifierManager\bin\Debug\NLog.xml
 D:\dev\RssTestReader\CLNotifierManager\obj\Debug\CLNotifierManager.exe
 D:\dev\RssTestReader\CLNotifierManager\obj\Debug\CLNotifierManager.pdb
-D:\dev\CarCrawler\src\CLNotifierManager\bin\Debug\CLNotifierManager.exe.config
-D:\dev\CarCrawler\src\CLNotifierManager\obj\Debug\CLNotifierManager.exe
-D:\dev\CarCrawler\src\CLNotifierManager\obj\Debug\CLNotifierManager.pdb
 D:\dev\CarCrawler\src\CLNotifierManager\bin\Debug\NLog.config
+D:\dev\CarCrawler\src\CLNotifierManager\bin\Debug\CLNotifierManager.exe.config
 D:\dev\CarCrawler\src\CLNotifierManager\bin\Debug\CLNotifierManager.exe
 D:\dev\CarCrawler\src\CLNotifierManager\bin\Debug\CLNotifierManager.pdb
 D:\dev\CarCrawler\src\CLNotifierManager\bin\Debug\Dapper.dll
@@ -76,3 +74,5 @@ D:\dev\CarCrawler\src\CLNotifierManager\obj\Debug\CLNotifierManager.Feeds.resour
 D:\dev\CarCrawler\src\CLNotifierManager\obj\Debug\CLNotifierManager.MainForm.resources
 D:\dev\CarCrawler\src\CLNotifierManager\obj\Debug\CLNotifierManager.Properties.Resources.resources
 D:\dev\CarCrawler\src\CLNotifierManager\obj\Debug\CLNotifierManager.csproj.GenerateResource.Cache
+D:\dev\CarCrawler\src\CLNotifierManager\obj\Debug\CLNotifierManager.exe
+D:\dev\CarCrawler\src\CLNotifierManager\obj\Debug\CLNotifierManager.pdb

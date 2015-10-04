@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -90,6 +91,13 @@ namespace TestHtmlParsing
             Debug.Write("sleped from " + (mseconds / 1000) );
         }
 
+        public static int GetRandom(RNGCryptoServiceProvider rngProvider, int min, int max)
+        {
+            byte[] b = new byte[sizeof(UInt32)];
+            rngProvider.GetBytes(b);
+            double d = BitConverter.ToUInt32(b, 0) / (double)UInt32.MaxValue;
+            return min + (int)((max - min) * d);
+        }
         private void btnParse_Click(object sender, EventArgs e)
         {
             // Create a new parser front - end(can be re - used)
