@@ -37,6 +37,8 @@ Proc.usp_Feed_GetAll
 Proc.usp_Feed_GetSingle
 Proc.usp_Feed_Search
 Proc.usp_Feed_Update
+Table.UserAgent
+Proc.usp_GetRandomUserAgent
 Proc.usp_Html_Create
 Proc.usp_Html_GetAllUnProcessed
 Proc.usp_Html_GetOne

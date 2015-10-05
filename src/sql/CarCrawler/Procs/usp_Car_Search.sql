@@ -11,7 +11,7 @@ GO
 -- Author:          WAC
 -- Create date:     8/20/2013 10:43:19 PM
 -- =============================================
-Create Procedure dbo.usp_Car_Search
+CREATE Procedure [dbo].[usp_Car_Search]
 (
 	@DateIn datetime2, 
 	@Link nvarchar(255), 
@@ -25,7 +25,6 @@ Create Procedure dbo.usp_Car_Search
 	@FeedId smallint, 
 	@Processed bit, 
 	@EmailSent bit, 
-    
 	@PageIndex int = 0,
 	@PageSize int = 20,
 	@SortField varchar(100),

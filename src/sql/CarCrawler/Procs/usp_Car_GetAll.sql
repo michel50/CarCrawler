@@ -16,8 +16,31 @@ CREATE Procedure [dbo].[usp_Car_GetAll]
 AS
 BEGIN
     Set NoCount On;
-	SELECT Id, DateIn, Link, Title, Description, Make, Model, Miles, Year, Price, FeedId, Processed, EmailSent, HtmlDownloaded
-	FROM [CarCrawler].[dbo].[Car]
+	SELECT [Id]
+      ,[DateIn]
+      ,[Link]
+      ,[Title]
+      ,[Description]
+      ,[Make]
+      ,[Model]
+      ,[Miles]
+      ,[Year]
+      ,[Price]
+      ,[Color]
+      ,[Condition]
+      ,[Drive]
+      ,[Fuel]
+      ,[Size]
+      ,[TitleStatus]
+      ,[Transmission]
+      ,[Type]
+      ,[VIN]
+      ,[FeedId]
+      ,[Processed]
+      ,[EmailSent]
+      ,[HtmlDownloaded]
+  FROM [dbo].[Car]
+
 END
 
 GO

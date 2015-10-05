@@ -24,4 +24,12 @@
     <isIdentity>False</isIdentity>
     <isNullable>False</isNullable>
   </TableColumns>
+  <TableColumns>
+    <ColumnName>DownLoadDate</ColumnName>
+    <inPrimaryKey>false</inPrimaryKey>
+    <isComputed>false</isComputed>
+    <Type>datetime2</Type>
+    <isIdentity>False</isIdentity>
+    <isNullable>True</isNullable>
+  </TableColumns>
 </TableColumnsDS>

@@ -1,0 +1,1 @@
+bin\debug\RSSRetrieveService.exe -c

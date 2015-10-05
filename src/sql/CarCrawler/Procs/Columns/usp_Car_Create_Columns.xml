@@ -37,6 +37,42 @@
     <Type>money</Type>
   </TableColumns>
   <TableColumns>
+    <ColumnName>@Color</ColumnName>
+    <Type>nvarchar</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@Condition</ColumnName>
+    <Type>nvarchar</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@Drive</ColumnName>
+    <Type>nvarchar</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@Fuel</ColumnName>
+    <Type>nvarchar</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@Size</ColumnName>
+    <Type>nvarchar</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@TitleStatus</ColumnName>
+    <Type>nvarchar</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@Transmission</ColumnName>
+    <Type>nvarchar</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@Type</ColumnName>
+    <Type>nvarchar</Type>
+  </TableColumns>
+  <TableColumns>
+    <ColumnName>@VIN</ColumnName>
+    <Type>nvarchar</Type>
+  </TableColumns>
+  <TableColumns>
     <ColumnName>@FeedId</ColumnName>
     <Type>smallint</Type>
   </TableColumns>

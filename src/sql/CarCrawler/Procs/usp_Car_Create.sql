@@ -22,34 +22,65 @@ CREATE Procedure [dbo].[usp_Car_Create]
 	@Miles int=null, 
 	@Year smallint=null, 
 	@Price money=null, 
+	@Color nvarchar(50)=null,
+	@Condition nvarchar(50)=null,
+	@Drive nvarchar(50)=null,
+	@Fuel nvarchar(50)=null,
+	@Size nvarchar(50)=null,
+	@TitleStatus nvarchar(50)=null,
+	@Transmission nvarchar(50)=null,
+	@Type nvarchar(50)=null,
+	@VIN nvarchar(50)=null,
 	@FeedId smallint=null, 
 	@Processed bit=0, 
 	@EmailSent bit=0,
 	@HtmlDownloaded bit = 0
 
+
+
 As
 Begin   
     Set NoCount On;
-Begin Try
-    Set @Link = @Link;
-    Set @Title = @Title;
-    Set @Description = @Description;
-    Set @Make = @Make;
-    Set @Model = @Model;
+BEGIN TRY
+BEGIN TRAN
+
+    --Set @Link = @Link;
+    --Set @Title = @Title;
+    --Set @Description = @Description;
+    --Set @Make = @Make;
+    --Set @Model = @Model;
 
 	if not exists(select 1 from [CarCrawler].[dbo].[Car] where Title = @Title and DateIn = @DateIn) 
 	begin
-    Insert Into [CarCrawler].[dbo].[Car]
-		(DateIn, Link, Title, Description, Make, Model, Miles, Year, Price, FeedId, Processed, EmailSent, HtmlDownloaded)
-	Values
-		(@DateIn, @Link, @Title, @Description, @Make, @Model, @Miles, @Year, @Price, @FeedId, @Processed, @EmailSent, 0) 
+	Insert into Car (DateIn,Link,Title,Description,Make,Model,Miles,[Year],Price,Color,[Condition],Drive,Fuel,[Size],TitleStatus,Transmission,[Type],VIN,FeedId,Processed,EmailSent,HtmlDownloaded)
+	values(@DateIn,@Link,@Title,@Description,@Make,@Model,@Miles,@Year,@Price,@Color,@Condition,@Drive,@Fuel,@Size,@TitleStatus,@Transmission,@Type,@VIN,@FeedId,@Processed,@EmailSent,@HtmlDownloaded)
     
     
 	end
-	End Try
-	Begin Catch
-		Return ERROR_NUMBER()
-	End Catch
+
+
+COMMIT TRAN
+END TRY
+
+BEGIN CATCH
+ROLLBACK TRAN
+
+DECLARE @ErrorNumber_INT INT;
+DECLARE @ErrorSeverity_INT INT;
+DECLARE @ErrorProcedure_VC VARCHAR(200);
+DECLARE @ErrorLine_INT INT;
+DECLARE @ErrorMessage_NVC NVARCHAR(4000);
+
+SELECT
+		@ErrorMessage_NVC = ERROR_MESSAGE(),
+		@ErrorSeverity_INT = ERROR_SEVERITY(),
+		@ErrorNumber_INT = ERROR_NUMBER(),
+		@ErrorProcedure_VC = ERROR_PROCEDURE(),
+		@ErrorLine_INT = ERROR_LINE()
+
+RAISERROR(@ErrorMessage_NVC,@ErrorSeverity_INT,1);
+
+END CATCH
 END
 
 
