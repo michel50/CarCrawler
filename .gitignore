@@ -1,0 +1,8 @@
+*.InstallLog
+*.nupkg
+src/RSSRetrieveService/bin/Debug/
+src/RSSRetrieveService/obj/
+src/SpGenerator/SPGenerator.DataModel/obj/
+src/TestHtmlParsing/bin/
+src/SpGenerator/TreeViewControl/obj/
+src/HtmlDLProducerConsumer/obj/
