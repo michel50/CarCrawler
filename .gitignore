@@ -226,3 +226,4 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+src/SpGenerator/SPGeneratorUI/Views/MainWin - Copy.xaml
