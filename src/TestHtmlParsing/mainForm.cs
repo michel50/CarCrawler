@@ -26,6 +26,7 @@ namespace TestHtmlParsing
     {
         private List<Html> htmlList = new List<Html>();
         private List<PropValue> propValue = new List<PropValue>();
+        private List<string> yearMakeModel = new List<string>(); 
         private DataAccess.Data data = new Data();
         public mainForm()
         {
@@ -144,17 +145,32 @@ namespace TestHtmlParsing
             }
         }
 
-        private void InsertPropValue(string InputText)
+
+        private void MatchYearMakeModel(string InputText)
+        {
+           var regex = new Regex("(?:<b>)(?<title>\\d{4}\\s[0-9A-Za-z ]+)(?:</b>)",
+           RegexOptions.Multiline
+           | RegexOptions.CultureInvariant
+           | RegexOptions.Compiled);
+            Match m = regex.Match(InputText);
+            if (m.Success)
+            { 
+                yearMakeModel.Add(m.Groups["title"].Value);
+            }
+
+        }
+        private void MatchPropValue(string InputText)
         {
          
-        var MyRegex = new Regex("(?<prop>\\w+):\\s<b>(?<value>\\w+)</b>",
-               RegexOptions.Multiline
-                | RegexOptions.CultureInvariant
-                | RegexOptions.Compiled);
+        var MyRegex = new Regex("(?<prop>^[A-Za-z ]+):\\s<b>(?<value>\\w+)</b>",
+            RegexOptions.Multiline
+            | RegexOptions.CultureInvariant
+            | RegexOptions.Compiled);
 
 
-        //// Capture the first Match, if any, in the InputText
-         Match m = MyRegex.Match(InputText);
+
+            //// Capture the first Match, if any, in the InputText
+            Match m = MyRegex.Match(InputText);
             if (m.Success)
             {
                var match = new PropValue();
@@ -163,17 +179,6 @@ namespace TestHtmlParsing
                 propValue.Add(match);
             }
 
-        //// Capture all Matches in the InputText
-        // MatchCollection ms = MyRegex.Matches(InputText);
-
-        //// Test to see if there is a match in the InputText
-        // bool IsMatch = MyRegex.IsMatch(InputText);
-
-        //// Get the names of all the named and numbered capture groups
-        // string[] GroupNames = MyRegex.GetGroupNames();
-
-        //// Get the numbers of all the named and numbered capture groups
-        // int[] GroupNumbers = MyRegex.GetGroupNumbers();
     }
 
     private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -184,6 +189,7 @@ namespace TestHtmlParsing
 
         private void button3_Click(object sender, EventArgs e)
         {
+            yearMakeModel.Clear();
             htmlList.Clear();
             htmlList = data.GetAllHtmUnprocessed();
             var myList = new List<string>();
@@ -202,7 +208,8 @@ namespace TestHtmlParsing
                         if (!string.IsNullOrEmpty(elem.InnerHtml.Trim()) && elem.InnerHtml.Contains("<b>"))
                         {
                             myList.Add(elem.InnerHtml);
-                            InsertPropValue(elem.InnerHtml);
+                            MatchYearMakeModel(elem.InnerHtml);
+                            MatchPropValue(elem.InnerHtml);
                         }
 
                     }
@@ -219,11 +226,16 @@ namespace TestHtmlParsing
                   select dbo.Prop).Distinct().OrderBy(name => name);
 
             htmlList.Clear();
+   
             foreach (var upv in uniqueProps)
             {
                 txtHtml.AppendText(upv.AppendLine());
             }
-
+            yearMakeModel.Sort();
+            foreach (var ymm in yearMakeModel)
+            {
+                txtHtml.AppendText(ymm.AppendLine());
+            }
 
         }
     }

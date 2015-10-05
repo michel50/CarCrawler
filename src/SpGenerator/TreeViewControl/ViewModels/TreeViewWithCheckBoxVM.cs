@@ -36,9 +36,9 @@ namespace TreeViewWithCheckBoxes
 
         #region Properties
 
-        public List<TreeViewNode> Children { get; private set; }
+        public List<TreeViewNode> Children { get; }
 
-        public bool IsInitiallySelected { get; private set; }
+        public bool IsInitiallySelected { get; }
         public bool IsNodeExpanded { get; set; }
         public bool IsNodeEnabled { get; set; }
         
