@@ -13,6 +13,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AngleSharp.Dom.Html;
 using DataAccess.Entities;
 using AngleSharp.Parser.Html;
 using DataAccess;
@@ -25,7 +26,7 @@ namespace TestHtmlParsing
     public partial class mainForm : Form
     {
         private List<Html> htmlList = new List<Html>();
-        private List<PropValue> propValue = new List<PropValue>();
+ 
         private List<string> yearMakeModel = new List<string>(); 
         private DataAccess.Data data = new Data();
         public mainForm()
@@ -146,20 +147,22 @@ namespace TestHtmlParsing
         }
 
 
-        private void MatchYearMakeModel(string InputText)
+        private string MatchYearMakeModel(string InputText)
         {
-           var regex = new Regex("(?:<b>)(?<title>\\d{4}\\s[0-9A-Za-z ]+)(?:</b>)",
+           var regex = new Regex("(?:<b>)(?<year>\\d{4})(?<makemode>\\s[0-9A-Za-z ]+)(?:</b>)",
            RegexOptions.Multiline
            | RegexOptions.CultureInvariant
            | RegexOptions.Compiled);
             Match m = regex.Match(InputText);
+            string year = null;
             if (m.Success)
             { 
                 yearMakeModel.Add(m.Groups["title"].Value);
+                year = m.Groups["year"].Value.Trim();
             }
-
+            return year;
         }
-        private void MatchPropValue(string InputText)
+        private PropValue MatchPropValue(string InputText)
         {
          
         var MyRegex = new Regex("(?<prop>^[A-Za-z ]+):\\s<b>(?<value>\\w+)</b>",
@@ -171,15 +174,15 @@ namespace TestHtmlParsing
 
             //// Capture the first Match, if any, in the InputText
             Match m = MyRegex.Match(InputText);
+            var match = new PropValue();
             if (m.Success)
             {
-               var match = new PropValue();
                 match.Prop = m.Groups["prop"].Value;
                 match.Value = m.Groups["value"].Value;
-                propValue.Add(match);
+               
             }
-
-    }
+            return match;
+        }
 
     private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -195,6 +198,8 @@ namespace TestHtmlParsing
             var myList = new List<string>();
             foreach (var doc in htmlList)
             {
+                var carId = doc.CarId;
+                var propValue = new List<PropValue>();
                 var parser = new HtmlParser();
                 //Just get the DOM representation
                 var document = parser.Parse(doc.html);
@@ -208,34 +213,89 @@ namespace TestHtmlParsing
                         if (!string.IsNullOrEmpty(elem.InnerHtml.Trim()) && elem.InnerHtml.Contains("<b>"))
                         {
                             myList.Add(elem.InnerHtml);
-                            MatchYearMakeModel(elem.InnerHtml);
-                            MatchPropValue(elem.InnerHtml);
+                            var ymm = MatchYearMakeModel(elem.InnerHtml);
+                            if (!string.IsNullOrEmpty(ymm))
+                            {
+                                propValue.Add(item:
+                                    new PropValue { CarId = carId, Prop = "year", Value = ymm });
+
+                            }
+                            var propval = MatchPropValue(elem.InnerHtml);
+                            propValue.Add(item:
+                                new PropValue {CarId = carId, Prop = propval.Prop, Value = propval.Value});
+
                         }
 
                     }
                 }
-            }
-            myList.Sort();
-            foreach (var s in myList)
-            {
-                txtParse.AppendText(s.AppendLine());
-            }
 
-            var uniqueProps =
-                (from dbo in propValue
-                  select dbo.Prop).Distinct().OrderBy(name => name);
+                if (propValue.Count > 0)
+                {
+                    var car = data.GetCar(doc.CarId);
+                    if (car == null) continue;
+                    foreach (var pv in propValue)
+                    {
+                        switch (pv.Prop)
+                        {
+                            case "year":
+                                car.Year = !string.IsNullOrEmpty(pv.Value.NullIfEmpty()) ? Convert.ToInt16(pv.Value.NullIfEmpty()) : car.Year;
+                                break;
+                            case "condition":
+                                car.Condition = pv.Value.NullIfEmpty();
+                                break;
+                            case "drive":
+                                car.Drive = pv.Value.NullIfEmpty();
+                                break;
+                            case "fuel":
+                                car.Fuel = pv.Value.NullIfEmpty();
+                                break;
+                            case "paint color":
+                                car.Color = pv.Value.NullIfEmpty();
+                                break;
+                            case "size":
+                                car.Size = pv.Value.NullIfEmpty();
+                                break;
+                            case "title status":
+                                car.TitleStatus = pv.Value.NullIfEmpty();
+                                break;
+                            case "transmission":
+                                car.Transmission = pv.Value.NullIfEmpty();
+                                break;
+                            case "type":
+                                car.Type = pv.Value.NullIfEmpty();
+                                break;
+                            case "VID":
+                                car.VIN = pv.Value.NullIfEmpty();
+                                break;
+                            case "odometer":
+                                car.Miles = !string.IsNullOrEmpty(pv.Value.NullIfEmpty()) ? Convert.ToInt32(pv.Value.NullIfEmpty()) : car.Miles;
+                                break;
+                        }
+                    }
+                    data.UpdateCars(car);
+                }
+            }
+            //myList.Sort();
+            //foreach (var s in myList)
+            //{
+            //    txtParse.AppendText(s.AppendLine());
+            //}
 
-            htmlList.Clear();
+            //var uniqueProps =
+            //    (from dbo in propValue
+            //      select dbo.Prop).Distinct().OrderBy(name => name);
+
+            //htmlList.Clear();
    
-            foreach (var upv in uniqueProps)
-            {
-                txtHtml.AppendText(upv.AppendLine());
-            }
-            yearMakeModel.Sort();
-            foreach (var ymm in yearMakeModel)
-            {
-                txtHtml.AppendText(ymm.AppendLine());
-            }
+            //foreach (var upv in uniqueProps)
+            //{
+            //    txtHtml.AppendText(upv.AppendLine());
+            //}
+            //yearMakeModel.Sort();
+            //foreach (var ymm in yearMakeModel)
+            //{
+            //    txtHtml.AppendText(ymm.AppendLine());
+            //}
 
         }
     }

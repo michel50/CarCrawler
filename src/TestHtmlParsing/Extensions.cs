@@ -32,5 +32,11 @@ namespace TestHtmlParsing
         {
             return text + System.Environment.NewLine;
         }
+
+        public static string NullIfEmpty(this string text)
+        {
+            var s = text.Trim();
+            return string.IsNullOrEmpty(s) ? null : s;
+        }
     }
 }

@@ -41,7 +41,7 @@ namespace RSSRetrieveService
             try
             {
                 Console.WriteLine("Starting");
-                DataAccess.CleanDB();
+                DataAccess.CleanTables();
                 Logger.Debug("Filling Details = {0}", DateTime.Now.ToString("MMM ddd d HH:mm yyyy"));
                 FillMillage();
                 FillYears();

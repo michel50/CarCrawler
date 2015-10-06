@@ -8,6 +8,7 @@ namespace TestHtmlParsing.DTos
 {
     class PropValue
     {
+        public int CarId { get; set; }
         public string Prop { get; set; }
         public string Value { get; set; }
     }

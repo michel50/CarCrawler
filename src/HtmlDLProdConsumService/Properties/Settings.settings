@@ -3,7 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="IntervalInMinutes" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">15</Value>
+      <Value Profile="(Default)">45</Value>
+    </Setting>
+    <Setting Name="CronSchedule" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0 0/15 8-19 * * ?</Value>
     </Setting>
   </Settings>
 </SettingsFile>
