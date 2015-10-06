@@ -74,6 +74,7 @@
             this.btnGetTrim.TabIndex = 3;
             this.btnGetTrim.Text = "Get Trim";
             this.btnGetTrim.UseVisualStyleBackColor = true;
+            this.btnGetTrim.Click += new System.EventHandler(this.btnGetTrim_Click);
             // 
             // btnGetModel
             // 

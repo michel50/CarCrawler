@@ -14,6 +14,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ServiceStack;
 using ServiceStack.Text;
 
@@ -51,16 +52,21 @@ namespace GetCarQueryApi
                             var jsonString = response.Content.ReadAsStringAsync();
 
                             jsonString.Wait();
-                          
-                           // var json = jsonString.Result.Replace("?(", "").Replace(");\n0");
 
-                           // dynamic dyn = DynamicJson(jsonString.Result.Replace("?()","").Replace(");", ""));
-                            var s = DynamicJson.Deserialize(jsonString.Result.Replace("?(", "").Replace(");", ""));
-                            var k = s.Makes;
-                            foreach (var v in k)
+                            JObject googleSearch = JObject.Parse(jsonString.Result.Replace("?(", "").Replace(");", ""));
+                            IList<JToken> results = googleSearch["Makes"].Children().ToList();
+
+
+                            //List<Make> c = JsonConvert.DeserializeObject<List<Make>>(googleSearch["Makes"].Children());
+                            var makes = new List<Make>();
+                            
+                            foreach (JToken result in results)
                             {
-                                Debug.WriteLine(v.make_id);
+                                var searchResult =
+                                    JsonConvert.DeserializeObject<Make>(result.ToString());
+                                makes.Add(searchResult);
                             }
+                     
 
                         });
                     task.Wait();
@@ -92,6 +98,11 @@ namespace GetCarQueryApi
             var task = GetMakes();
             var mcnt = makes.Count;
           
+        }
+
+        private void btnGetTrim_Click(object sender, EventArgs e)
+        {
+            //http://www.carqueryapi.com/api/0.3/?callback=?&cmd=getTrims&make=bentley&year=2013
         }
     }
 }
