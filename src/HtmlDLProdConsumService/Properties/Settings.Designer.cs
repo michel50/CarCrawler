@@ -34,7 +34,7 @@ namespace HtmlDLProdConsumService.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0 0/15 8-19 * * ?")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0 0/15 7-19 * * ?")]
         public string CronSchedule {
             get {
                 return ((string)(this["CronSchedule"]));

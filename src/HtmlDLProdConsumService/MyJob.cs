@@ -77,7 +77,7 @@ namespace HtmlDLProdConsumService
 
             private void DownloadPage(ITargetBlock<Parse> targetAscTransform)
             {
-                var totalPages = 1;
+                var totalPages = 0;
                 foreach (var parse in _dataAccess.GetEmailQueries().FindAll(x => x.Email == true).Select(q => _dataAccess.GetHtmlToScrape(GenSqlStatementForHtmlParsing(q.Id))).SelectMany(cars => cars.Select(car => new Parse
                 {
                     CarId = car.Id,
