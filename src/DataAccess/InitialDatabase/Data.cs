@@ -131,6 +131,13 @@ namespace DataAccess
             return conn.Query<Car>(sql).ToList();
         }
 
+        public List<Makes> GetMakes()
+        {
+            return conn.Query<Makes>("select Distinct Make, Model from MakeModel", commandType: CommandType.Text).ToList();
+        }
+    
+
+
         public List<Predicate> GetPredicates()
         {
             return conn.Query<Predicate>("usp_PredicateGetAll", commandType: CommandType.StoredProcedure).ToList();
@@ -179,6 +186,12 @@ namespace DataAccess
                         html, commandType: CommandType.StoredProcedure);
         }
 
+        public void InsertYearMakeModel(int year, string make, string model)
+        {
+            conn.Execute("usp_MakeModel_Create",
+                new {Year = year, Make = make, Model = model, Style = "Other/Don't Know"}, commandType: CommandType.StoredProcedure);
+        }
+
         public void InsertRawData(DateTime dateIn, string link, string title, string description, int feedId)
         {
             conn.Execute("usp_Car_Create",
@@ -213,6 +226,11 @@ namespace DataAccess
         public void UpdateMailSent(int id)
         {
             conn.Execute("usp_Car_UpdateEmailSent", new { Id = id }, commandType: CommandType.StoredProcedure);
+        }
+
+        public void UpdateHtmlSent(int carId)
+        {
+            conn.Execute("usp_Html_Processed", new {CarId = carId}, commandType: CommandType.StoredProcedure);
         }
         // Dispose(bool disposing) executes in two distinct scenarios. 
         // If disposing equals true, the method has been called directly 

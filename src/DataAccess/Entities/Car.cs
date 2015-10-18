@@ -9,6 +9,7 @@ namespace DataAccess.Entities
         public bool Processed { get; set; }
         public bool? HtmlDownloaded { get; set; }
         public DateTime DateIn { get; set; }
+        public DateTime? PostDate { get; set; }
         public decimal? Price { get; set; }
         public int Id { get; set; }
         public int? Miles { get; set; }

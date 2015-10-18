@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions.cs" />
+    <Compile Include="HtmlProcessing.cs" />
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>

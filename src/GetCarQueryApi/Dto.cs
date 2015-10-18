@@ -22,7 +22,7 @@ namespace GetCarQueryApi
 
     public class YearMakeModel
     {
-        public string year { get; set; }
+        public int year { get; set; }
         public string make_display { get; set; }
         public string model_name { get; set; }
     }

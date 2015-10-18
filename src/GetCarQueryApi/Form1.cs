@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using DansCSharpLibrary.IO;
@@ -45,14 +46,14 @@ namespace GetCarQueryApi
                     //http://proxylist.hidemyass.com/search-1291967#listable
                     Proxy = new WebProxy(proxyserver, false),
                     UseProxy = true
-                   
+
                 };
 
                 var client = new HttpClient(httpHandler);
                 client.DefaultRequestHeaders.Add("User-Agent",
                                  "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident / 6.0)");
                 {
-                   
+
                     var task = client.GetAsync("http://www.carqueryapi.com/api/0.3/?callback=?&cmd=getMakes&year=" + year)
                         .ContinueWith((taskwithresponse) =>
                         {
@@ -65,15 +66,15 @@ namespace GetCarQueryApi
                             var results = googleSearch["Makes"].Children().ToList();
 
 
-                             _makes = new List<Make>();
-                            
+                            _makes = new List<Make>();
+
                             foreach (JToken result in results)
                             {
                                 var searchResult =
                                     JsonConvert.DeserializeObject<Make>(result.ToString());
                                 _makes.Add(searchResult);
                             }
-                     
+
 
                         });
                     task.Wait();
@@ -123,7 +124,7 @@ namespace GetCarQueryApi
 
 
                             _models = new List<Model>();
-                            
+
 
                             foreach (JToken result in results)
                             {
@@ -133,16 +134,16 @@ namespace GetCarQueryApi
                             }
                             if (_models.Count > 0)
                             {
-    
+
                                 var ymm = new List<YearMakeModel>();
                                 foreach (var mod in _models)
                                 {
-                                    ymm.Add(new YearMakeModel {make_display = make_display, year = year, model_name = mod.model_name} );
+                                    ymm.Add(new YearMakeModel { make_display = make_display, year = Convert.ToInt16(year), model_name = mod.model_name });
                                 }
                                 if (ymm.Count > 0)
                                 {
 
-                                    XmlSerialization.WriteToXmlFile<List<YearMakeModel>>(string.Concat(make_display, year,".xml"), ymm);
+                                    XmlSerialization.WriteToXmlFile<List<YearMakeModel>>(string.Concat(make_display, year, ".xml"), ymm);
                                 }
                             }
 
@@ -160,9 +161,9 @@ namespace GetCarQueryApi
 
         private void btnGetMakes_Click(object sender, EventArgs e)
         {
-            
-           var task = GetMakes(textBox1.Text);
-          
+
+            var task = GetMakes(textBox1.Text);
+
         }
 
         private void btnGetTrim_Click(object sender, EventArgs e)
@@ -197,6 +198,23 @@ namespace GetCarQueryApi
                 var searchResult =
                     JsonConvert.DeserializeObject<Make>(result.ToString());
                 _makes.Add(searchResult);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var files = Directory.GetFiles(@"D:\dev\CarCrawler\src\GetCarQueryApi\cars\");
+            var list = new List<YearMakeModel>();
+            var data = new DataAccess.Data();
+            foreach (var f in files)
+            {
+               var yym = DansCSharpLibrary.Serialization.XmlSerialization.ReadFromXmlFile<List<YearMakeModel>>(f);
+                //list.AddRange(yym);
+                foreach (var car in yym)
+                {
+                    data.InsertYearMakeModel(car.year, car.make_display, car.model_name);
+                }
+            
             }
         }
     }

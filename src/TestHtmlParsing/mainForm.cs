@@ -26,12 +26,17 @@ namespace TestHtmlParsing
     public partial class mainForm : Form
     {
         private List<Html> htmlList = new List<Html>();
- 
-        private List<string> yearMakeModel = new List<string>(); 
+
+        private List<Makes> makes;
+
         private DataAccess.Data data = new Data();
+
         public mainForm()
         {
             InitializeComponent();
+            makes = data.GetMakes();
+
+
         }
 
 
@@ -40,12 +45,12 @@ namespace TestHtmlParsing
             LoadAsync(this.textBox2.Text, CancellationToken.None);
         }
 
-        async Task LoadAsync(String url, CancellationToken cancel)
+        private async Task LoadAsync(String url, CancellationToken cancel)
         {
-            var handler = new HttpClientHandler { AllowAutoRedirect = false };
+            var handler = new HttpClientHandler {AllowAutoRedirect = false};
             var http = new HttpClient(handler);
             http.DefaultRequestHeaders.Add("User-Agent",
-                                             "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident / 6.0)");
+                "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident / 6.0)");
 
 
 
@@ -71,6 +76,7 @@ namespace TestHtmlParsing
 
             /* Use the document */
         }
+
         protected Uri Sanitize(String url)
         {
             Uri uri;
@@ -95,18 +101,19 @@ namespace TestHtmlParsing
             // Quartz .net  [DisallowConcurrentExecution]    http://www.quartz-scheduler.net/documentation/faq.html
             // more https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=quartz+net++%5BDisallowConcurrentExecution%5D
             Random random = new Random();
-            var mseconds = random.Next(75, 100) * 1000;
+            var mseconds = random.Next(75, 100)*1000;
             Thread.Sleep(mseconds);
-            Debug.Write("sleped from " + (mseconds / 1000) );
+            Debug.Write("sleped from " + (mseconds/1000));
         }
 
         public static int GetRandom(RNGCryptoServiceProvider rngProvider, int min, int max)
         {
-            byte[] b = new byte[sizeof(UInt32)];
+            byte[] b = new byte[sizeof (UInt32)];
             rngProvider.GetBytes(b);
-            double d = BitConverter.ToUInt32(b, 0) / (double)UInt32.MaxValue;
-            return min + (int)((max - min) * d);
+            double d = BitConverter.ToUInt32(b, 0)/(double) UInt32.MaxValue;
+            return min + (int) ((max - min)*d);
         }
+
         private void btnParse_Click(object sender, EventArgs e)
         {
             txtParse.Text = string.Empty;
@@ -147,28 +154,53 @@ namespace TestHtmlParsing
         }
 
 
-        private string MatchYearMakeModel(string InputText)
+        private YearMakeModel MatchYearMakeModel(string InputText)
         {
-           var regex = new Regex("(?:<b>)(?<year>\\d{4})(?<makemode>\\s[0-9A-Za-z ]+)(?:</b>)",
-           RegexOptions.Multiline
-           | RegexOptions.CultureInvariant
-           | RegexOptions.Compiled);
+            var regex = new Regex("(?:<b>)(?<year>\\d{4})(?<makemodel>\\s[0-9A-Za-z ]+)(?:</b>)",
+                RegexOptions.Multiline
+                | RegexOptions.CultureInvariant
+                | RegexOptions.Compiled);
             Match m = regex.Match(InputText);
             string year = null;
+            string makeModel = null;
+            string make = null;
+            string model = null;
+            YearMakeModel returnVal = null;
             if (m.Success)
-            { 
-                yearMakeModel.Add(m.Groups["title"].Value);
-                year = m.Groups["year"].Value.Trim();
+            {
+                returnVal = new YearMakeModel();
+                //yearMakeModel.Add(m.Groups["title"].Value);
+                returnVal.Year = m.Groups["year"].Value.Trim();
+                makeModel = m.Groups["makemodel"].Value.Trim();
+                foreach (var cm in makes)
+                {
+                    if (makeModel.ToUpper().Contains(cm.Make.ToUpper()))
+                    {
+                        returnVal.Make = cm.Make;
+                        break;
+                    }
+                }
+                foreach (var cm in makes)
+                {
+                    if (makeModel.ToUpper().Contains(cm.Model.ToUpper()) &&
+                        makeModel.ToUpper().Contains(cm.Make.ToUpper()))
+                    {
+                        returnVal.Model = cm.Model;
+                        break;
+                    }
+                }
+
             }
-            return year;
+            return returnVal;
         }
+
         private PropValue MatchPropValue(string InputText)
         {
-         
-        var MyRegex = new Regex("(?<prop>^[A-Za-z ]+):\\s<b>(?<value>\\w+)</b>",
-            RegexOptions.Multiline
-            | RegexOptions.CultureInvariant
-            | RegexOptions.Compiled);
+
+            var MyRegex = new Regex("(?<prop>^[A-Za-z ]+):\\s<b>(?<value>\\w+)</b>",
+                RegexOptions.Multiline
+                | RegexOptions.CultureInvariant
+                | RegexOptions.Compiled);
 
 
 
@@ -179,12 +211,12 @@ namespace TestHtmlParsing
             {
                 match.Prop = m.Groups["prop"].Value;
                 match.Value = m.Groups["value"].Value;
-               
+
             }
             return match;
         }
 
-    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtHtml.Text = htmlList.Where(x => x.CarId == Convert.ToInt32(comboBox1.SelectedItem)).First().html;
             // txtHtml.Text = e.In(htmlList)
@@ -192,114 +224,14 @@ namespace TestHtmlParsing
 
         private void button3_Click(object sender, EventArgs e)
         {
-            yearMakeModel.Clear();
-            htmlList.Clear();
-            htmlList = data.GetAllHtmUnprocessed();
-            var myList = new List<string>();
-            foreach (var doc in htmlList)
-            {
-                var carId = doc.CarId;
-                var propValue = new List<PropValue>();
-                var parser = new HtmlParser();
-                //Just get the DOM representation
-                var document = parser.Parse(doc.html);
-
-                var attrgroup = document.All.Where(m => m.LocalName == "p" && m.ClassList.Contains("attrgroup"));
-                foreach (var att in attrgroup)
-                {
-                    var c = att.GetDeepControlsByType<AngleSharp.Dom.IElement>();
-                    foreach (var elem in c)
-                    {
-                        if (!string.IsNullOrEmpty(elem.InnerHtml.Trim()) && elem.InnerHtml.Contains("<b>"))
-                        {
-                            myList.Add(elem.InnerHtml);
-                            var ymm = MatchYearMakeModel(elem.InnerHtml);
-                            if (!string.IsNullOrEmpty(ymm))
-                            {
-                                propValue.Add(item:
-                                    new PropValue { CarId = carId, Prop = "year", Value = ymm });
-
-                            }
-                            var propval = MatchPropValue(elem.InnerHtml);
-                            propValue.Add(item:
-                                new PropValue {CarId = carId, Prop = propval.Prop, Value = propval.Value});
-
-                        }
-
-                    }
-                }
-
-                if (propValue.Count > 0)
-                {
-                    var car = data.GetCar(doc.CarId);
-                    if (car == null) continue;
-                    foreach (var pv in propValue)
-                    {
-                        switch (pv.Prop)
-                        {
-                            case "year":
-                                car.Year = !string.IsNullOrEmpty(pv.Value.NullIfEmpty()) ? Convert.ToInt16(pv.Value.NullIfEmpty()) : car.Year;
-                                break;
-                            case "condition":
-                                car.Condition = pv.Value.NullIfEmpty();
-                                break;
-                            case "drive":
-                                car.Drive = pv.Value.NullIfEmpty();
-                                break;
-                            case "fuel":
-                                car.Fuel = pv.Value.NullIfEmpty();
-                                break;
-                            case "paint color":
-                                car.Color = pv.Value.NullIfEmpty();
-                                break;
-                            case "size":
-                                car.Size = pv.Value.NullIfEmpty();
-                                break;
-                            case "title status":
-                                car.TitleStatus = pv.Value.NullIfEmpty();
-                                break;
-                            case "transmission":
-                                car.Transmission = pv.Value.NullIfEmpty();
-                                break;
-                            case "type":
-                                car.Type = pv.Value.NullIfEmpty();
-                                break;
-                            case "VID":
-                                car.VIN = pv.Value.NullIfEmpty();
-                                break;
-                            case "odometer":
-                                car.Miles = !string.IsNullOrEmpty(pv.Value.NullIfEmpty()) ? Convert.ToInt32(pv.Value.NullIfEmpty()) : car.Miles;
-                                break;
-                        }
-                    }
-                    data.UpdateCars(car);
-                }
-            }
-            //myList.Sort();
-            //foreach (var s in myList)
-            //{
-            //    txtParse.AppendText(s.AppendLine());
-            //}
-
-            //var uniqueProps =
-            //    (from dbo in propValue
-            //      select dbo.Prop).Distinct().OrderBy(name => name);
-
-            //htmlList.Clear();
-   
-            //foreach (var upv in uniqueProps)
-            //{
-            //    txtHtml.AppendText(upv.AppendLine());
-            //}
-            //yearMakeModel.Sort();
-            //foreach (var ymm in yearMakeModel)
-            //{
-            //    txtHtml.AppendText(ymm.AppendLine());
-            //}
-
+            var htmlProcess = new HtmlProcessing();
+            htmlProcess.ProcessHtml();
+            htmlProcess.Dispose();
         }
-    }
+    
+}
 
+    
 
     internal class async
     {

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace TestHtmlParsing
 {
-    static  class Extensions
+    internal static class Extensions
     {
         public static IEnumerable<AngleSharp.Dom.IElement> GetDeepControlsByType<T>(this AngleSharp.Dom.IElement control)
         {
@@ -35,8 +35,9 @@ namespace TestHtmlParsing
 
         public static string NullIfEmpty(this string text)
         {
-            var s = text.Trim();
+            var s = text?.Trim();
             return string.IsNullOrEmpty(s) ? null : s;
         }
     }
+
 }
