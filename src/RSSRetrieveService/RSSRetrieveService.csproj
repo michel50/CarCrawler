@@ -108,6 +108,9 @@
   <ItemGroup>
     <Compile Include="AutofacJobListener.cs" />
     <Compile Include="CcDal.cs" />
+    <Compile Include="Dtos.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="HtmlProcessing.cs" />
     <Compile Include="MyAutofacModule.cs" />
     <Compile Include="MyJob.cs" />
     <Compile Include="Properties\Settings.cs" />

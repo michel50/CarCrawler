@@ -123,15 +123,6 @@ D:\dev\CarCrawler\src\RSSRetrieveService\bin\Debug\RSSRetrieveService.pdb
 D:\dev\CarCrawler\src\RSSRetrieveService\bin\Debug\DataAccess.dll
 D:\dev\CarCrawler\src\RSSRetrieveService\bin\Debug\Dapper.dll
 D:\dev\CarCrawler\src\RSSRetrieveService\bin\Debug\DataAccess.pdb
-D:\dev\CarCrawler\src\RSSRetrieveService\bin\Debug\AngleSharp.xml
-D:\dev\CarCrawler\src\RSSRetrieveService\bin\Debug\Autofac.xml
-D:\dev\CarCrawler\src\RSSRetrieveService\bin\Debug\Common.Logging.pdb
-D:\dev\CarCrawler\src\RSSRetrieveService\bin\Debug\Common.Logging.xml
-D:\dev\CarCrawler\src\RSSRetrieveService\bin\Debug\Common.Logging.Core.pdb
-D:\dev\CarCrawler\src\RSSRetrieveService\bin\Debug\Common.Logging.Core.xml
-D:\dev\CarCrawler\src\RSSRetrieveService\bin\Debug\NLog.xml
-D:\dev\CarCrawler\src\RSSRetrieveService\bin\Debug\Quartz.pdb
-D:\dev\CarCrawler\src\RSSRetrieveService\bin\Debug\Quartz.xml
 D:\dev\CarCrawler\src\RSSRetrieveService\bin\Debug\Dapper.pdb
 D:\dev\CarCrawler\src\RSSRetrieveService\bin\Debug\Dapper.xml
 D:\dev\CarCrawler\src\RSSRetrieveService\obj\Debug\RSSRetrieveService.csprojResolveAssemblyReference.cache

@@ -53,10 +53,13 @@ namespace RSSRetrieveService
                     DataAccess.UpdateCarDetail(car);
                     DataAccess.CheckForDups(car.Id);
                 }
-                //DownloadPage();
-                // TODO uncomment
-              //  SendOutEmails();
-              //  SendMail();
+
+                var htmlProcess = new HtmlProcessing();
+                htmlProcess.ProcessHtml();
+                htmlProcess.Dispose();
+
+                SendOutEmails();
+                SendMail();
                 Console.WriteLine("Done");
 
             }
@@ -565,93 +568,7 @@ namespace RSSRetrieveService
 
         }
 
-        private void DownloadPage()
-        {
-            foreach (var q in DataAccess.GetEmailQueries().FindAll(x => x.Email == true))
-            {
-
-                var htmls = DataAccess.GetHtmlToScrape(GenSqlStatementForHtmlParsing(q.Id));
-                Logger.Debug("Total from query {0} = {1}.", q.Subject, htmls.Count);
-                var emailss = htmls.Where(e => e.HtmlDownloaded == false);
-                Logger.Debug("Total after Lambda  {0} = {1}.", q.Subject, emailss.Count());
-                foreach (var html in htmls)
-                {
-                    Logger.Debug(html.Link);
-                    LoadAsync(html.Id, html.Link, CancellationToken.None);
-                    SleepRandom();
-                }
-                //var batches = emailss.Partition(10);
-                //foreach (var batch in batches)
-                //{
-                //    WriteHtml(batch, q.Subject);
-
-                //}
-            }
-        }
-
-        async Task LoadAsync(int carId, String url, CancellationToken cancel)
-        {
-            var handler = new HttpClientHandler { AllowAutoRedirect = false };
-            var http = new HttpClient(handler);
-            http.DefaultRequestHeaders.Add("User-Agent",
-                                             "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident / 6.0)");
-
-
-
-            //Get a correct URL from the given one (e.g. transform codeproject.com to http://codeproject.com)
-            var uri = Sanitize(url);
-
-            //Make the request
-            var request = await http.GetAsync(uri);
-            //var request = await http.GetStringAsync(uri);
-            cancel.ThrowIfCancellationRequested();
-
-            //Get the response stream
-            var response = await request.Content.ReadAsStringAsync();
-            cancel.ThrowIfCancellationRequested();
-            var html = new Html
-            {
-                CarId = carId,
-                html = response,
-                Processed = false
-            };
-            var data = new Data();
-            data.InsertHtmlData(html);
-            cancel.ThrowIfCancellationRequested();
-
-            /* Use the document */
-        }
-        protected Uri Sanitize(String url)
-        {
-            Uri uri;
-
-            if (File.Exists(url))
-                url = "file://localhost/" + url.Replace('\\', '/');
-
-            var lurl = url.ToLower();
-
-            if (!lurl.StartsWith("file://") && !lurl.StartsWith("http://") && !lurl.StartsWith("https://"))
-                url = "http://" + url;
-
-            if (Uri.TryCreate(url, UriKind.Absolute, out uri))
-                return uri;
-
-            return new Uri("http://www.google.com/search?q=" + url);
-        }
-
-
-        private void SleepRandom()
-        {
-            // Quartz .net  [DisallowConcurrentExecution]    http://www.quartz-scheduler.net/documentation/faq.html
-            // more https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=quartz+net++%5BDisallowConcurrentExecution%5D
-            Random random = new Random();
-            var mseconds = random.Next(75, 100) * 1000;
-            Thread.Sleep(mseconds);
-            
-        }
-
-
-
+  
         private void SendOutEmails()
         {
             foreach (var q in DataAccess.GetEmailQueries().FindAll(x => x.Email == true))
@@ -1086,25 +1003,5 @@ namespace RSSRetrieveService
     }
 
 
-    public static class Extensions
-    {
-        public static IEnumerable<IEnumerable<T>> Partition<T>(this IEnumerable<T> source, int size)
-        {
-            int i = 0;
-            var list = new List<T>(size);
-            foreach (T item in source)
-            {
-                list.Add(item);
-                if (++i == size)
-                {
-                    yield return list;
-                    list = new List<T>(size);
-                    i = 0;
-                }
-            }
-            if (list.Count > 0)
-                yield return list;
-        }
-    }
 
 }
