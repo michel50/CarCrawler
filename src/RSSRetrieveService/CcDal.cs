@@ -1,22 +1,19 @@
-﻿using System;
+﻿using DataAccess;
+using DataAccess.Entities;
+using NLog;
+using RSSRetrieveService.Properties;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Web.UI;
-using DataAccess;
-using DataAccess.Entities;
-using NLog;
-using RSSRetrieveService.Properties;
-using AngleSharp.Parser.Html;
 
 namespace RSSRetrieveService
 {
@@ -798,7 +795,7 @@ namespace RSSRetrieveService
 
             }
 
-            var sqlStr = "select * from car where " + contains + " and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < " + Settings.Default.maxemaildate + ")"; //(FeedId in (select Id From Feed where FeedActive = 1))
+            var sqlStr = "select * from car where " + contains + " and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < " + Settings.Default.maxemaildate + ") and (DATEDIFF(hour,PostDate, GetDate()) <= " + Settings.Default.maxposttime + ")"; //(FeedId in (select Id From Feed where FeedActive = 1))
             Logger.Debug(sqlStr);
             return sqlStr;
         }
