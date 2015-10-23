@@ -795,7 +795,7 @@ namespace RSSRetrieveService
 
             }
 
-            var sqlStr = "select * from car where " + contains + " and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < " + Settings.Default.maxemaildate + ") and (DATEDIFF(hour,PostDate, GetDate()) <= " + Settings.Default.maxposttime + ")"; //(FeedId in (select Id From Feed where FeedActive = 1))
+            var sqlStr = "select * from car where " + contains + " and (EmailSent = 0) and (datediff(day, DateIn, getdate()) < " + Settings.Default.maxemaildate + ") and (DATEDIFF(hour,PostDate, GetDate()) <= " + Settings.Default.maxposttime + ") and  (TitleStatus != 'rebuilt')"; //(FeedId in (select Id From Feed where FeedActive = 1))
             Logger.Debug(sqlStr);
             return sqlStr;
         }

@@ -7,3 +7,11 @@ D:\dev\RssTestReader\DataAccess\bin\Release\DataAccess.pdb
 D:\dev\RssTestReader\DataAccess\obj\Release\DataAccess.csprojResolveAssemblyReference.cache
 D:\dev\RssTestReader\DataAccess\obj\Release\DataAccess.dll
 D:\dev\RssTestReader\DataAccess\obj\Release\DataAccess.pdb
+D:\dev\CarCrawler\src\DataAccess\bin\Release\DataAccess.dll
+D:\dev\CarCrawler\src\DataAccess\bin\Release\DataAccess.pdb
+D:\dev\CarCrawler\src\DataAccess\bin\Release\Dapper.dll
+D:\dev\CarCrawler\src\DataAccess\bin\Release\Dapper.pdb
+D:\dev\CarCrawler\src\DataAccess\bin\Release\Dapper.xml
+D:\dev\CarCrawler\src\DataAccess\obj\Release\DataAccess.csprojResolveAssemblyReference.cache
+D:\dev\CarCrawler\src\DataAccess\obj\Release\DataAccess.dll
+D:\dev\CarCrawler\src\DataAccess\obj\Release\DataAccess.pdb

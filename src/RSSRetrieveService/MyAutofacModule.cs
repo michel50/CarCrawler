@@ -1,7 +1,8 @@
-﻿using Atlas;
+﻿
 using Autofac;
 using Quartz;
 using Quartz.Impl;
+using Atlas;
 
 namespace RSSRetrieveService
 {

@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using DataAccess;
 using DataAccess.Entities;
-using Jint.Parser.Ast;
 using NLog;
 
 namespace HtmlDLProducerConsumer
