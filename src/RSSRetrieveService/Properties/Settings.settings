@@ -27,7 +27,7 @@
       <Value Profile="(Default)">driveawayresults@gmail.com</Value>
     </Setting>
     <Setting Name="sendemail" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="maxemaildate" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">5</Value>
