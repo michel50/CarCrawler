@@ -115,7 +115,7 @@ namespace RSSRetrieveService.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("24")]
+        [global::System.Configuration.DefaultSettingValueAttribute("48")]
         public int maxposttime {
             get {
                 return ((int)(this["maxposttime"]));
